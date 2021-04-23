@@ -2,10 +2,8 @@ import React from "react";
 import img1 from "../file/1.png";
 import img2 from "../file/2.png";
 import img3 from "../file/3.png";
-import img1k from "../file/1k.png";
-import img2k from "../file/2k.png";
-import img3k from "../file/3k.png";
 import { NavLink } from "react-router-dom";
+import {DATA} from "../DATA"
 
 export const Book = () => {
   return (
@@ -15,34 +13,20 @@ export const Book = () => {
           <h2>Наши тетради</h2>
         </div>
         <div className="row justify-content-around">
-        <div className="card mt-2 mb-2" style={{ width: "18rem" }}>
-          <img src={img1k} className="img-thumbnail card-img-top" alt="2"></img>
-          <div className="card-body">
-            <h4 className="card-title">Математика</h4>
-            <h5 className="card-title">2-3 класс</h5>
-            <p className="card-text">25 уроков 250 упражнений</p>
-            <NavLink to="menu"><button className="btn btn-primary" type="submit">Перейти</button></NavLink>
+        {DATA.map((item)=> {
+          return (
+            <div className="card mt-2 mb-2" style={{ width: "18rem" }} key={item.id}>
+            <img src={item.titleimg} className="img-thumbnail card-img-top" alt="2"></img>
+            <div className="card-body">
+              <h4 className="card-title">{item.title}</h4>
+              <h5 className="card-title">{item.class}</h5>
+              <p className="card-text">{`${item.theme.length} темы`}</p>
+              <NavLink to="menu"><button className="btn btn-primary" type="submit" onClick={()=>console.log("111")}>Перейти</button></NavLink>
+            </div>
           </div>
-        </div>
-        <div className="card mt-2 mb-2" style={{ width: "18rem" }}>
-          <img src={img2k} className="img-thumbnail card-img-top" alt="2"></img>
-          <div className="card-body">
-            <h4 className="card-title">Биология</h4>
-            <h5 className="card-title">Скоро появится</h5>
 
-            <p className="card-text">25 уроков 250 упражнений</p>
-            <button className="btn btn-primary" type="submit" disabled>Перейти</button>
-          </div>
-        </div>
-        <div className="card mt-2 mb-2" style={{ width: "18rem" }}>
-          <img src={img3k} className="img-thumbnail card-img-top" alt="2"></img>
-          <div className="card-body">
-            <h4 className="card-title">История</h4>
-            <h5 className="card-title">Скоро появится</h5>
-            <p className="card-text">25 уроков 250 упражнений</p>
-            <button className="btn btn-primary" type="submit" disabled>Перейти</button>
-          </div>
-        </div>
+          )
+        })}
         </div>
       </div>
       <div className="col-lg-3 advantages">
