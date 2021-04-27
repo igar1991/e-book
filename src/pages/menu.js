@@ -4,35 +4,26 @@ import { BookContext } from "../context/book/bookContext";
 
 export const Menu = () => {
   const {book} = useContext(BookContext)
-
-
   let his = useHistory()
   return (
     <div className="book">
       <div className="d-flex justify-content-around p-2">
           <h2>Математика. 2 класс.</h2>
         </div>
-    <div class="m-2 row justify-content-center">
-      <div class="list-group col-lg-5 mb-2">
-        <button
+    <div className="m-2 row justify-content-center">
+      <div className="list-group col-lg-5 mb-2">  
+      {book&&book.theme.map((item, index)=>{
+        return(
+          <button
+          key={index}
           type="button"
-          class="list-group-item list-group-item-primary list-group-item-action"
-          onClick={() =>his.push("/solution")}
+          className="list-group-item list-group-item-primary list-group-item-action"
+          onClick={() =>console.log(1)}
         >
-          Тема №1. Название темы.
+          {item.title}
         </button>
-        <button type="button" class="list-group-item list-group-item-action list-group-item-primary active">
-          Тема №2. Название темы.
-        </button>
-        <button type="button" class="list-group-item list-group-item-action list-group-item-primary">
-          Тема №3. Название темы.
-        </button>
-        <button type="button" class="list-group-item list-group-item-action list-group-item-primary">
-          Тема №4. Название темы.
-        </button>
-        <button type="button" class="list-group-item list-group-item-action list-group-item-primary">
-          Тема №5. Название темы.
-        </button>
+        )
+      })}
       </div>
       <div class="list-group col-lg-5 mb-2">
         <NavLink to="/solution"><button type="button" class="list-group-item list-group-item-action list-group-item-warning" onClick={()=>console.log(book)}>

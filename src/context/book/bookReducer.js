@@ -1,8 +1,10 @@
+import { ADD_BOOK } from "../types"
+
 export const bookReduser =(state, action)=> {
     switch (action.type) {
-        case 'ADD_BOOK':
+        case ADD_BOOK:
             return {
-                ...action.payload
+                ...action.book
             }
             default:
                 return state
