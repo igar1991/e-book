@@ -31,34 +31,34 @@ const Zog_book = {
     {
         title: 'Тема два',
         class: [{
-            title: 'Урок один',
+            title: 'Урок пять',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок два',
+            title: 'Урок шесть',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок три',
+            title: 'Урок семь',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок четыре',
+            title: 'Урок восемь',
             quests: [<Quest1 />, <Quest2 />]
         }]
     },
     {
         title: 'Тема три',
         class: [{
-            title: 'Урок один',
+            title: 'Урок девять',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок два',
+            title: 'Урок десять',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок три',
+            title: 'Урок одиннадцать',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
@@ -72,10 +72,10 @@ const Zog_book = {
 const Zog_book1 = {
     titleimg: img1,
     id: '2',
-    title: 'Математика',
+    title: 'Физика',
     class: "2-3 класс",
     theme: [{
-        title: 'Тема один',
+        title: 'Тема пять',
         class: [{
             title: 'Урок один',
             quests: [<Quest1 />, <Quest2 />]
@@ -94,40 +94,40 @@ const Zog_book1 = {
         }]
     },
     {
-        title: 'Тема два',
+        title: 'Тема шесть',
         class: [{
-            title: 'Урок один',
+            title: 'Урок один2',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок два',
+            title: 'Урок два2',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок три',
+            title: 'Урок три2',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок четыре',
+            title: 'Урок четыре2',
             quests: [<Quest1 />, <Quest2 />]
         }]
     },
     {
-        title: 'Тема три',
+        title: 'Тема семь',
         class: [{
-            title: 'Урок один',
+            title: 'Урок один3',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок два',
+            title: 'Урок два3',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок три',
+            title: 'Урок три3',
             quests: [<Quest1 />, <Quest2 />]
         },
         {
-            title: 'Урок четыре',
+            title: 'Урок четыре3',
             quests: [<Quest1 />, <Quest2 />]
         }]
     }]
