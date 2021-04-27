@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { Navbar } from './components/nav';
+import { BookState } from './context/book/BookState';
 import { Book } from './pages/book';
 import { Menu } from './pages/menu';
 import { Result } from './pages/result';
@@ -9,6 +10,7 @@ import { Solution } from './pages/solution';
 
 function App() {
   return (
+    <BookState>
     <BrowserRouter>
     <div className="container-fluid">
       <Navbar />
@@ -20,6 +22,7 @@ function App() {
       </Switch>
     </div>
     </BrowserRouter>
+    </BookState>
   );
 }
 

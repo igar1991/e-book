@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import { BookContext } from "../context/book/bookContext";
 
 export const Menu = () => {
+  const {book} = useContext(BookContext)
+
 
   let his = useHistory()
   return (
@@ -32,7 +35,7 @@ export const Menu = () => {
         </button>
       </div>
       <div class="list-group col-lg-5 mb-2">
-        <NavLink to="/solution"><button type="button" class="list-group-item list-group-item-action list-group-item-warning">
+        <NavLink to="/solution"><button type="button" class="list-group-item list-group-item-action list-group-item-warning" onClick={()=>console.log(book)}>
           Урок №1. Название урока.
         </button></NavLink>
         <button type="button" class="list-group-item list-group-item-action list-group-item-warning">
