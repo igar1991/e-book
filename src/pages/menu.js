@@ -1,12 +1,19 @@
 import React, {useContext} from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { BookContext } from "../context/book/bookContext";
+import { SolutionContext } from "../context/solution/solutionContext";
 import { ThemeContext } from "../context/themebook/themeContext";
 
 export const Menu = () => {
   const {book} = useContext(BookContext)
   const {theme, addTheme} = useContext(ThemeContext)
+  const {addQuest} = useContext(SolutionContext)
   let his = useHistory()
+
+  const addQuestAll=(item)=>{
+    his.push("/solution")
+    addQuest(item)
+  }
   return (
     <div className="book">
       <div className="d-flex justify-content-around p-2">
@@ -30,7 +37,7 @@ export const Menu = () => {
       <div className="list-group col-lg-5 mb-2">
         {theme&&theme.class.map((item, index)=>{
           return (
-            <button key={index} type="button" className="list-group-item list-group-item-action list-group-item-warning">
+            <button key={index} type="button" className="list-group-item list-group-item-action list-group-item-warning" onClick={()=>addQuestAll(item)}>
             {item.title}
             </button>
           )

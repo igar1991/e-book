@@ -1,13 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
+import { SolutionContext } from "../context/solution/solutionContext";
+import { Quest1 } from "../quest/quest1";
 
 export const Solution = () => {
+
+  const {allQuests, current}=useContext(SolutionContext)
   return (
     <div className="book p-2">
       <div className="d-flex justify-content-around p-1">
         <h2>Урок №1.</h2>
       </div>
       <div className="d-flex justify-content-around p-1">
-        <h4>Название урока.</h4>
+        <h4>{allQuests.title}</h4>
       </div>
       <hr />
       <div className="d-flex flex-wrap row justify-content-center m-3">
@@ -93,58 +97,8 @@ export const Solution = () => {
         </div>
       </div>
       <hr />
-      <div className="d-flex justify-content-center p-2">
-        <h4>
-          Текст задания. Текст задания. Текст задания.??? Текст задания. Текст
-          задания. Текст задания.{" "}
-        </h4>
-      </div>
-      <div className="d-flex row justify-content-center pt-2 pb-2">
-        <div className="col-lg-5">
-          <button type="button" class="btn btn-outline-primary btn-block">
-            Варимант один.
-          </button>
-          <button type="button" class="btn btn-outline-primary btn-block">
-            Вариант два.
-          </button>
-          <button type="button" class="btn btn-outline-primary btn-block">
-            Вариант четыре.
-          </button>
-          <button type="button" class="btn btn-outline-primary btn-block">
-            Вариант пять.
-          </button>
-        </div>
-      </div>
-
-      <div class="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
+      <div>
+        {allQuests&&allQuests.quests[current]}
       </div>
     </div>
   );
