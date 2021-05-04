@@ -78,26 +78,26 @@ const Zog_book1 = {
         title: 'Тема пять',
         class: [{
             title: 'Урок один',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
         },
         {
             title: 'Урок два',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />,<Quest1 />]
         },
         {
             title: 'Урок три',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />,<Quest1 />,<Quest1 />]
         },
         {
             title: 'Урок четыре',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />,<Quest1 />,<Quest1 />,<Quest1 />]
         }]
     },
     {
         title: 'Тема шесть',
         class: [{
             title: 'Урок один2',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
         },
         {
             title: 'Урок два2',
@@ -105,30 +105,30 @@ const Zog_book1 = {
         },
         {
             title: 'Урок три2',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
         },
         {
             title: 'Урок четыре2',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
         }]
     },
     {
         title: 'Тема семь',
         class: [{
             title: 'Урок один3',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
         },
         {
             title: 'Урок два3',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
         },
         {
             title: 'Урок три3',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
         },
         {
             title: 'Урок четыре3',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
         }]
     }]
 

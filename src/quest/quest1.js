@@ -18,10 +18,10 @@ export const Quest1 =()=> {
             Вариант два.
           </button>
           <button type="button" class="btn btn-outline-primary btn-block">
-            Вариант четыре.
+           Неправильный ответ
           </button>
           <button type="button" class="btn btn-outline-primary btn-block">
-            Вариант пять.
+            Правильный ответ
           </button>
         </div>
       </div>
