@@ -1,30 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Button } from "react-bootstrap";
+import { SolutionContext } from "../context/solution/solutionContext";
 
 export const Quest1 =()=> {
+
+  const {falseAnswer, trueAnswer}=useContext(SolutionContext)
     return (
         <div>
-            <div className="d-flex justify-content-center p-2">
-        <h4>
-          Текст задания. Текст задания. Текст задания.??? Текст задания. Текст
-          задания. Текст задания.{" "}
-        </h4>
-      </div>
-      <div className="d-flex row justify-content-center pt-2 pb-2">
-        <div className="col-lg-5">
-          <button type="button" class="btn btn-outline-primary btn-block">
-            Варимант один.
-          </button>
-          <button type="button" class="btn btn-outline-primary btn-block">
-            Вариант два.
-          </button>
-          <button type="button" class="btn btn-outline-primary btn-block">
+            <h1>QUEST111</h1>
+           
+            <button type="button" class="btn btn-outline-primary btn-block" onClick={()=>falseAnswer(1)}>
            Неправильный ответ
           </button>
-          <button type="button" class="btn btn-outline-primary btn-block">
+          <button type="button" class="btn btn-outline-primary btn-block" onClick={()=>trueAnswer(1)}>
             Правильный ответ
           </button>
-        </div>
-      </div>
+          <Button>1111111</Button>
         </div>
     )
 }

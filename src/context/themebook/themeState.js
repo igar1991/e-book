@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { ADD_THEME } from "../types";
+import { ADD_THEME, CLEAR_THEME } from "../types";
 import { ThemeContext } from "./themeContext";
 import { themeReducer } from "./themeReducer";
 
@@ -13,11 +13,18 @@ export const ThemeState = ({ children }) => {
       })
   }
 
+  const clearTheme =()=> {
+    dispatch({
+      type: CLEAR_THEME
+    })
+  }
+
   return (
     <ThemeContext.Provider
       value={{
         theme: state,
-        addTheme
+        addTheme,
+        clearTheme
       }}
     >
       {children}

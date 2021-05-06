@@ -13,7 +13,7 @@ const Zog_book = {
         title: 'Тема один',
         class: [{
             title: 'Урок один',
-            quests: [<Quest1 />, <Quest2 />]
+            quests: [<Quest1 />, <Quest2 />,<Quest1 />,<Quest2 />]
         },
         {
             title: 'Урок два',
@@ -44,6 +44,25 @@ const Zog_book = {
         },
         {
             title: 'Урок восемь',
+            quests: [<Quest1 />, <Quest2 />]
+        }]
+    },
+    {
+        title: 'Тема три',
+        class: [{
+            title: 'Урок девять',
+            quests: [<Quest1 />, <Quest2 />]
+        },
+        {
+            title: 'Урок десять',
+            quests: [<Quest1 />, <Quest2 />]
+        },
+        {
+            title: 'Урок одиннадцать',
+            quests: [<Quest1 />, <Quest2 />]
+        },
+        {
+            title: 'Урок четыре',
             quests: [<Quest1 />, <Quest2 />]
         }]
     },

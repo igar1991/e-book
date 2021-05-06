@@ -5,10 +5,12 @@ import img3 from "../file/3.png";
 import { NavLink } from "react-router-dom";
 import { DATA } from "../DATA";
 import { BookContext } from "../context/book/bookContext";
+import { ThemeContext } from "../context/themebook/themeContext";
 
 export const Book = () => {
 
   const {book, addBook} = useContext(BookContext)
+  const {clearTheme} = useContext(ThemeContext)
   return (
     <div className="row justify-content-around">
       <div className="col-lg-8 book" style={{ minHeight: "500px" }}>
@@ -36,7 +38,10 @@ export const Book = () => {
                     <button
                       className="btn btn-primary"
                       type="submit"
-                      onClick={() => addBook(item)}
+                      onClick={() => {
+                        clearTheme()
+                        addBook(item)
+                      }}
                     >
                       Перейти
                     </button>
