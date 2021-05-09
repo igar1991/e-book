@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Modal } from "react-bootstrap";
+import { ResultContext } from "../context/result/resultContext";
 import { SolutionContext } from "../context/solution/solutionContext";
 
 export const Solution = () => {
@@ -12,6 +13,8 @@ export const Solution = () => {
     nextQuest,
     trueAnswer,
   } = useContext(SolutionContext);
+
+  const {stateR, addStartdata }= useContext(ResultContext)
 
   const answerTrue = () => {
     if (allQuests.quests.length <= currentQuest + 1) {
@@ -111,6 +114,51 @@ export const Solution = () => {
             onClick={() => falseAnswer(1)}
           >
             Закрыть
+          </button>
+        </Modal.Footer>
+      </Modal>
+      <Modal
+        size="lg"
+        show={stateR.modalName}
+        backdrop="static"
+        keyboard={false}
+        centered
+        aria-labelledby="contained-modal-title-vcenter"
+      >
+        <Modal.Header className="bg-success text-light">
+          <Modal.Title>Введите ваши данные</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="row">
+            <div className="col-md-9">
+              <label for="name" className="form-label">
+                Фамилия и Имя
+              </label>
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                id="name"
+              />
+            </div>
+            <div className="col-md-3">
+              <label for="class" className="form-label">
+                Класс
+              </label>
+              <input
+                type="text"
+                className="form-control form-control-lg"
+                id="class"
+              />
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <button
+            type="button"
+            className="btn btn-success btn-block"
+            onClick={addStartdata}
+          >
+            Начать
           </button>
         </Modal.Footer>
       </Modal>

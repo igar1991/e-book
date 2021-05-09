@@ -6,3 +6,4 @@ export const CLEAR_QUEST = 'CLEAR_QUEST';
 export const FALSE_ANSWER = 'FALSE_ANSWER';
 export const TRUE_ANSWER = 'TRUE_ANSWER';
 export const NEXT_QUEST = 'NEXT_QUEST';
+export const ADD_START_DATA ='ADD_START_DATA'
