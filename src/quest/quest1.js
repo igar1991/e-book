@@ -6,6 +6,7 @@ import { SolutionContext } from "../context/solution/solutionContext";
 export const Quest1 =()=> {
 
   const {falseAnswer, trueAnswer}=useContext(SolutionContext)
+ 
 
   const {stateR}=useContext(ResultContext)
     return (
@@ -18,7 +19,7 @@ export const Quest1 =()=> {
           <button type="button" class="btn btn-outline-primary btn-block" onClick={()=>trueAnswer(1)}>
             Правильный ответ
           </button>
-          <Button>{stateR.res}</Button>
+          <Button onClick={()=>console.log(stateR)}>{stateR.res}</Button>
         </div>
     )
 }

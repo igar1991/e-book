@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Modal } from "react-bootstrap";
+import { BookContext } from "../context/book/bookContext";
 import { ResultContext } from "../context/result/resultContext";
 import { SolutionContext } from "../context/solution/solutionContext";
 
@@ -14,7 +15,11 @@ export const Solution = () => {
     trueAnswer,
   } = useContext(SolutionContext);
 
+  const [name, setName]=useState('')
+  const [numberClass, setNumberClass]=useState('')
+
   const {stateR, addStartdata }= useContext(ResultContext)
+  const {book}=useContext(BookContext)
 
   const answerTrue = () => {
     if (allQuests.quests.length <= currentQuest + 1) {
@@ -77,7 +82,7 @@ export const Solution = () => {
         centered
         aria-labelledby="contained-modal-title-vcenter"
       >
-        <Modal.Header className="bg-success">
+        <Modal.Header className="bg-success text-light">
           <Modal.Title>Верно! 😀</Modal.Title>
         </Modal.Header>
         <Modal.Body className="d-flex justify-content-center">
@@ -101,7 +106,7 @@ export const Solution = () => {
         centered
         aria-labelledby="contained-modal-title-vcenter"
       >
-        <Modal.Header className="bg-danger">
+        <Modal.Header className="bg-danger text-light">
           <Modal.Title>Неверно! 😔</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -129,7 +134,9 @@ export const Solution = () => {
           <Modal.Title>Введите ваши данные</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
           <div className="row">
+            
             <div className="col-md-9">
               <label for="name" className="form-label">
                 Фамилия и Имя
@@ -138,6 +145,7 @@ export const Solution = () => {
                 type="text"
                 class="form-control form-control-lg"
                 id="name"
+                onChange={(e)=>setName(e.target.value)}
               />
             </div>
             <div className="col-md-3">
@@ -148,15 +156,19 @@ export const Solution = () => {
                 type="text"
                 className="form-control form-control-lg"
                 id="class"
+                onChange={(e)=>setNumberClass(e.target.value)}
               />
             </div>
+           
           </div>
         </Modal.Body>
         <Modal.Footer>
           <button
             type="button"
             className="btn btn-success btn-block"
-            onClick={addStartdata}
+            onClick={()=>{
+              addStartdata(name,numberClass,book.title,allQuests.title)
+              console.log(stateR)}}
           >
             Начать
           </button>

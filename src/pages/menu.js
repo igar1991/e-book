@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import { useHistory } from "react-router-dom";
 import { BookContext } from "../context/book/bookContext";
+import { ResultContext } from "../context/result/resultContext";
 import { SolutionContext } from "../context/solution/solutionContext";
 import { ThemeContext } from "../context/themebook/themeContext";
 
@@ -8,6 +9,7 @@ export const Menu = () => {
   const {book} = useContext(BookContext)
   const {theme, addTheme} = useContext(ThemeContext)
   const {addQuest, clearQuest} = useContext(SolutionContext)
+  const {openModalName}=useContext(ResultContext)
   let his = useHistory()
 
   const addQuestAll=(item)=>{
@@ -40,6 +42,7 @@ export const Menu = () => {
             <button key={index} type="button" className="list-group-item list-group-item-action list-group-item-warning" onClick={()=>{
               clearQuest()
               addQuestAll(item)
+              openModalName()
             }}>
             {item.title}
             </button>
