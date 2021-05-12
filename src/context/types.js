@@ -8,3 +8,4 @@ export const TRUE_ANSWER = 'TRUE_ANSWER';
 export const NEXT_QUEST = 'NEXT_QUEST';
 export const ADD_START_DATA ='ADD_START_DATA';
 export const OPEN_MODAL_NAME='OPEN_MODAL_NAME';
+export const ADD_ALL_RESULT = 'ADD_ALL_RESULT';

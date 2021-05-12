@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import { BookContext } from "../context/book/bookContext";
 import { ResultContext } from "../context/result/resultContext";
 import { SolutionContext } from "../context/solution/solutionContext";
+import { useHistory } from "react-router-dom";
 
 export const Solution = () => {
   const {
@@ -15,20 +16,23 @@ export const Solution = () => {
     trueAnswer,
   } = useContext(SolutionContext);
 
-  const [name, setName]=useState('')
-  const [numberClass, setNumberClass]=useState('')
+  const [name, setName] = useState('')
+  const [numberClass, setNumberClass] = useState('')
 
-  const {stateR, addStartdata }= useContext(ResultContext)
-  const {book}=useContext(BookContext)
+  const { stateR, addStartdata, addAllResult } = useContext(ResultContext)
+  const { book } = useContext(BookContext)
+
+  let his = useHistory()
+
 
   const answerTrue = () => {
     if (allQuests.quests.length <= currentQuest + 1) {
       trueAnswer(1);
-      console.log("End Quest", allQuests.quests.length);
+      addAllResult();
+      his.push("/result")
     } else {
       trueAnswer(1);
       nextQuest(1);
-      console.log(currentQuest);
     }
   };
   return (
@@ -75,7 +79,7 @@ export const Solution = () => {
       <hr />
       <div>{allQuests && allQuests.quests[currentQuest]}</div>
       <Modal
-        size="sm"
+        size="md"
         show={modalTrue}
         backdrop="static"
         keyboard={false}
@@ -86,20 +90,27 @@ export const Solution = () => {
           <Modal.Title>Верно! 😀</Modal.Title>
         </Modal.Header>
         <Modal.Body className="d-flex justify-content-center">
-          <h2>Молодец! Так держать!</h2>
+          {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Вы прошли урок Урок №{currentQuest + 1}</h2> : <h2>Молодец! Так держать!</h2>}
         </Modal.Body>
         <Modal.Footer>
-          <button
+          {(allQuests.quests.length <= currentQuest + 1) ? <button
             type="button"
-            class="btn btn-success btn-block"
+            className="btn btn-success btn-block"
+            onClick={answerTrue}
+          >
+            Сохранить результаты
+          </button> : <button
+            type="button"
+            className="btn btn-success btn-block"
             onClick={answerTrue}
           >
             Далее
-          </button>
+          </button>}
+
         </Modal.Footer>
       </Modal>
       <Modal
-        size="sm"
+        size="md"
         show={modalFalse}
         backdrop="static"
         keyboard={false}
@@ -115,7 +126,7 @@ export const Solution = () => {
         <Modal.Footer>
           <button
             type="button"
-            class="btn btn-danger btn-block"
+            className="btn btn-danger btn-block"
             onClick={() => falseAnswer(1)}
           >
             Закрыть
@@ -136,39 +147,40 @@ export const Solution = () => {
         <Modal.Body>
 
           <div className="row">
-            
+
             <div className="col-md-9">
-              <label for="name" className="form-label">
+              <label htmlFor="name" className="form-label">
                 Фамилия и Имя
               </label>
               <input
                 type="text"
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 id="name"
-                onChange={(e)=>setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="col-md-3">
-              <label for="class" className="form-label">
+              <label htmlFor="class" className="form-label">
                 Класс
               </label>
               <input
                 type="text"
                 className="form-control form-control-lg"
                 id="class"
-                onChange={(e)=>setNumberClass(e.target.value)}
+                onChange={(e) => setNumberClass(e.target.value)}
               />
             </div>
-           
+
           </div>
         </Modal.Body>
         <Modal.Footer>
           <button
             type="button"
             className="btn btn-success btn-block"
-            onClick={()=>{
-              addStartdata(name,numberClass,book.title,allQuests.title)
-              console.log(stateR)}}
+            onClick={() => {
+              addStartdata(name, numberClass, book.title, allQuests.title)
+              console.log(stateR)
+            }}
           >
             Начать
           </button>

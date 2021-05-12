@@ -15,6 +15,7 @@ export const Menu = () => {
   const addQuestAll=(item)=>{
     his.push("/solution")
     addQuest(item)
+    
   }
   return (
     <div className="book">

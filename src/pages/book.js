@@ -9,7 +9,7 @@ import { ThemeContext } from "../context/themebook/themeContext";
 
 export const Book = () => {
 
-  const {book, addBook} = useContext(BookContext)
+  const {addBook} = useContext(BookContext)
   const {clearTheme} = useContext(ThemeContext)
   return (
     <div className="row justify-content-around">

@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { ADD_START_DATA ,OPEN_MODAL_NAME} from "../types";
+import { ADD_START_DATA ,OPEN_MODAL_NAME, ADD_ALL_RESULT} from "../types";
 import { ResultContext } from "./resultContext";
 import { resultReducer } from "./resultReducer";
 
@@ -15,6 +15,7 @@ export const ResultState = ({ children }) => {
     miss: 1,
     res: "good",
     modalName: false,
+    allResult: []
   });
 
   const addStartdata =(nameStudent,numberClass, titleBook,titleClass )=>{
@@ -31,8 +32,14 @@ export const ResultState = ({ children }) => {
     })
   }
 
+  const addAllResult =()=>{
+    dispatch({
+     type: ADD_ALL_RESULT
+    })
+  }
+
   return (
-    <ResultContext.Provider value={{ stateR: state, addStartdata, openModalName }}>
+    <ResultContext.Provider value={{ stateR: state, addStartdata, openModalName, addAllResult }}>
       {children}
     </ResultContext.Provider>
   );
