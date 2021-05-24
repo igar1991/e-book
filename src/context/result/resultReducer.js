@@ -28,7 +28,6 @@ export const resultReducer = (state, { payload, type }) => {
         error: 2,
         miss: 1,
         res: "good",
-        modalName: false,
         allResult: [...state.allResult, { titleBook: state.titleBook, 
           titleClass: state.titleClass, 
           nameStudent: state.nameStudent, 

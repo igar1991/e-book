@@ -39,7 +39,7 @@ export const ResultState = ({ children }) => {
   }
 
   return (
-    <ResultContext.Provider value={{ stateR: state, addStartdata, openModalName, addAllResult }}>
+    <ResultContext.Provider value={{ stateR: state, allResult: state.allResult, addStartdata, openModalName, addAllResult }}>
       {children}
     </ResultContext.Provider>
   );
