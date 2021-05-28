@@ -4,35 +4,52 @@ import { BookContext } from "../context/book/bookContext";
 import { ResultContext } from "../context/result/resultContext";
 import { SolutionContext } from "../context/solution/solutionContext";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {falseAnswer, nextQuest, trueAnswer, addStartdata, addAllResult} from "../redux/action"
+import { useDispatch } from "react-redux";
+
 
 export const Solution = () => {
-  const {
-    allQuests,
-    currentQuest,
-    modalFalse,
-    modalTrue,
-    falseAnswer,
-    nextQuest,
-    trueAnswer,
-  } = useContext(SolutionContext);
+  // const {
+  //   allQuests,
+  //   currentQuest,
+  //   modalFalse,
+  //   modalTrue,
+  //   falseAnswer,
+  //   nextQuest,
+  //   trueAnswer,
+  // } = useContext(SolutionContext);
+
+  const dispatch = useDispatch();
+
+
+  const allQuests = useSelector(state=>state.solutionReducer.allQuests)
+  const currentQuest = useSelector(state=>state.solutionReducer.currentQuest)
+  const modalFalse = useSelector(state=>state.solutionReducer.modalFalse)
+  const modalTrue = useSelector(state=>state.solutionReducer.modalTrue)
+
 
   const [name, setName] = useState('')
   const [numberClass, setNumberClass] = useState('')
 
-  const { stateR, addStartdata, addAllResult } = useContext(ResultContext)
-  const { book } = useContext(BookContext)
+  ///const { stateR, addStartdata, addAllResult } = useContext(ResultContext)
+  //const { book } = useContext(BookContext)
+
+  const book = useSelector(state=>state.bookReducer)
+  const stateR = useSelector(state=>state.resultReducer)
+
 
   let his = useHistory()
 
 
   const answerTrue = () => {
     if (allQuests.quests.length <= currentQuest + 1) {
-      trueAnswer(1);
-      addAllResult();
+      dispatch(trueAnswer(1));
+      dispatch(addAllResult());
       his.push("/result")
     } else {
       trueAnswer(1);
-      nextQuest(1);
+      dispatch(nextQuest(1));
     }
   };
   return (
@@ -78,7 +95,7 @@ export const Solution = () => {
       </div>
       <hr />
       <div>{allQuests && allQuests.quests[currentQuest]}</div>
-      <Modal
+      {/* <Modal
         size="md"
         show={modalTrue}
         backdrop="static"
@@ -108,7 +125,7 @@ export const Solution = () => {
           </button>}
 
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
       <Modal
         size="md"
         show={modalFalse}
@@ -127,7 +144,7 @@ export const Solution = () => {
           <button
             type="button"
             className="btn btn-danger btn-block"
-            onClick={() => falseAnswer(1)}
+            onClick={() => dispatch(falseAnswer(1))}
           >
             Закрыть
           </button>
@@ -178,8 +195,7 @@ export const Solution = () => {
             type="button"
             className="btn btn-success btn-block"
             onClick={() => {
-              addStartdata(name, numberClass, book.title, allQuests.title)
-              console.log(stateR)
+              dispatch(addStartdata(name, numberClass, book.title, allQuests.title))
             }}
           >
             Начать

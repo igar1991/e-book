@@ -1,16 +1,17 @@
-import React, {useContext} from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import img1 from "../file/1.png";
 import img2 from "../file/2.png";
 import img3 from "../file/3.png";
 import { NavLink } from "react-router-dom";
 import { DATA } from "../DATA";
-import { BookContext } from "../context/book/bookContext";
-import { ThemeContext } from "../context/themebook/themeContext";
+
+import {addBook} from "../redux/action";
+
 
 export const Book = () => {
+  const dispatch = useDispatch();
 
-  const {addBook} = useContext(BookContext)
-  const {clearTheme} = useContext(ThemeContext)
   return (
     <div className="row justify-content-around">
       <div className="col-lg-8 book" style={{ minHeight: "500px" }}>
@@ -39,8 +40,7 @@ export const Book = () => {
                       className="btn btn-primary"
                       type="submit"
                       onClick={() => {
-                        clearTheme()
-                        addBook(item)
+                        dispatch(addBook(item))
                       }}
                     >
                       Перейти
