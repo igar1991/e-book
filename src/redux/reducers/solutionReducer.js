@@ -11,6 +11,7 @@ const initialState = {
   currentQuest: 0,
   modalFalse: false,
   modalTrue: false,
+  modalAdd: false
 };
 
 export const solutionReducer = (state=initialState, action) => {

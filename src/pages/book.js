@@ -6,7 +6,7 @@ import img3 from "../file/3.png";
 import { NavLink } from "react-router-dom";
 import { DATA } from "../DATA";
 
-import {addBook, clearTheme } from "../redux/action";
+import { addBook, clearTheme } from "../redux/action";
 
 
 export const Book = () => {

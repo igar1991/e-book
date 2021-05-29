@@ -1,15 +1,12 @@
-import React, { useContext } from "react";
-import { SolutionContext } from "../context/solution/solutionContext";
-import {falseAnswer, trueAnswer} from "../redux/action";
+import React from "react";
+import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 
 
 
 export const Quest2 = () => {
-
-  //const { falseAnswer, trueAnswer } = useContext(SolutionContext)
+  
   const dispatch = useDispatch();
-
 
   return (
     <div>

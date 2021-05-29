@@ -1,46 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import { BookContext } from "../context/book/bookContext";
-import { ResultContext } from "../context/result/resultContext";
-import { SolutionContext } from "../context/solution/solutionContext";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {falseAnswer, nextQuest, trueAnswer, addStartdata, addAllResult} from "../redux/action"
+import { falseAnswer, nextQuest, trueAnswer, addStartdata, addAllResult } from "../redux/action"
 import { useDispatch } from "react-redux";
 
-
 export const Solution = () => {
-  // const {
-  //   allQuests,
-  //   currentQuest,
-  //   modalFalse,
-  //   modalTrue,
-  //   falseAnswer,
-  //   nextQuest,
-  //   trueAnswer,
-  // } = useContext(SolutionContext);
 
   const dispatch = useDispatch();
-
-
-  const allQuests = useSelector(state=>state.solutionReducer.allquests)
-  const currentQuest = useSelector(state=>state.solutionReducer.currentQuest)
-  const modalFalse = useSelector(state=>state.solutionReducer.modalFalse)
-  const modalTrue = useSelector(state=>state.solutionReducer.modalTrue)
-
+  const allQuests = useSelector(state => state.solutionReducer.allquests)
+  const currentQuest = useSelector(state => state.solutionReducer.currentQuest)
+  const modalFalse = useSelector(state => state.solutionReducer.modalFalse)
+  const modalTrue = useSelector(state => state.solutionReducer.modalTrue)
 
   const [name, setName] = useState('')
   const [numberClass, setNumberClass] = useState('')
 
-  ///const { stateR, addStartdata, addAllResult } = useContext(ResultContext)
-  //const { book } = useContext(BookContext)
-
-  const book = useSelector(state=>state.bookReducer)
-  const stateR = useSelector(state=>state.resultReducer)
-
+  const book = useSelector(state => state.bookReducer)
+  const stateR = useSelector(state => state.resultReducer)
 
   let his = useHistory()
-
 
   const answerTrue = () => {
     if (allQuests.quests.length <= currentQuest + 1) {
@@ -82,7 +61,7 @@ export const Solution = () => {
                     width="35"
                     height="35"
                     fill="green"
-                    class="bi bi-check-circle"
+                    className="bi bi-check-circle"
                     viewBox="0 0 16 16"
                   >
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
