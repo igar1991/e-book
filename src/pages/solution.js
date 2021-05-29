@@ -33,16 +33,15 @@ export const Solution = () => {
   };
   return (
     <div className="book p-2">
-      <div className="d-flex justify-content-around p-1">
+      {allQuests&&<><div className="d-flex justify-content-around p-1">
         <h2>Урок №{currentQuest + 1}</h2>
       </div>
       <div className="d-flex justify-content-around p-1">
-        <h4>{allQuests && allQuests.title}</h4>
+        <h4>{allQuests.title}</h4>
       </div>
       <hr />
       <div className="d-flex flex-wrap row justify-content-center m-3">
-        {allQuests &&
-          allQuests.quests.map((item, index) => {
+        {allQuests.quests.map((item, index) => {
             return (
               <div
                 key={index}
@@ -73,7 +72,7 @@ export const Solution = () => {
           })}
       </div>
       <hr />
-      <div>{allQuests && allQuests.quests[currentQuest]}</div>
+      <div>{allQuests.quests[currentQuest]}</div>
       <Modal
         size="md"
         show={modalTrue}
@@ -180,7 +179,8 @@ export const Solution = () => {
             Начать
           </button>
         </Modal.Footer>
-      </Modal>
+      </Modal></>}
+      
     </div>
   );
 };

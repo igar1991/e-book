@@ -7,7 +7,7 @@ import {
 } from "../actionTypes";
 
 const initialState = {
-  allquests: [],
+  allquests: null,
   currentQuest: 0,
   modalFalse: false,
   modalTrue: false,
