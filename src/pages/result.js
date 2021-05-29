@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import { ResultContext } from "../context/result/resultContext";
 
 export const Result = () => {
 
-  const { allResult } = useContext(ResultContext)
+  //const { allResult } = useContext(ResultContext)
+
+  const allResult = useSelector(state=>state.resultReducer.allResult)
+  console.log(allResult)
 
   return (
     <div className="book" style={{ minHeight: "40rem" }}>
