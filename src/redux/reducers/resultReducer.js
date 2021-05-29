@@ -15,7 +15,7 @@ const initialState = {
   miss: 1,
   res: "good",
   modalName: false,
-  allResult: null,
+  allResult: [],
 };
 
 export const resultReducer = (state = initialState, { payload, type }) => {
@@ -48,7 +48,6 @@ export const resultReducer = (state = initialState, { payload, type }) => {
         res: "good",
         modalName: false,
         allResult: [
-          ...state.allResult,
           {
             titleBook: state.titleBook,
             titleClass: state.titleClass,
@@ -61,6 +60,8 @@ export const resultReducer = (state = initialState, { payload, type }) => {
             res: state.res,
             modalName: false,
           },
+          ...state.allResult,
+          
         ],
       };
     default:

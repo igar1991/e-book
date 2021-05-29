@@ -6,7 +6,7 @@ import img3 from "../file/3.png";
 import { NavLink } from "react-router-dom";
 import { DATA } from "../DATA";
 
-import {addBook} from "../redux/action";
+import {addBook, clearTheme } from "../redux/action";
 
 
 export const Book = () => {
@@ -40,7 +40,9 @@ export const Book = () => {
                       className="btn btn-primary"
                       type="submit"
                       onClick={() => {
+
                         dispatch(addBook(item))
+                        dispatch(clearTheme())
                       }}
                     >
                       Перейти

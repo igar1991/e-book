@@ -23,7 +23,7 @@ export const Solution = () => {
   const dispatch = useDispatch();
 
 
-  const allQuests = useSelector(state=>state.solutionReducer.allQuests)
+  const allQuests = useSelector(state=>state.solutionReducer.allquests)
   const currentQuest = useSelector(state=>state.solutionReducer.currentQuest)
   const modalFalse = useSelector(state=>state.solutionReducer.modalFalse)
   const modalTrue = useSelector(state=>state.solutionReducer.modalTrue)
@@ -48,7 +48,7 @@ export const Solution = () => {
       dispatch(addAllResult());
       his.push("/result")
     } else {
-      trueAnswer(1);
+      dispatch(trueAnswer(1));
       dispatch(nextQuest(1));
     }
   };
@@ -95,7 +95,7 @@ export const Solution = () => {
       </div>
       <hr />
       <div>{allQuests && allQuests.quests[currentQuest]}</div>
-      {/* <Modal
+      <Modal
         size="md"
         show={modalTrue}
         backdrop="static"
@@ -125,7 +125,7 @@ export const Solution = () => {
           </button>}
 
         </Modal.Footer>
-      </Modal> */}
+      </Modal>
       <Modal
         size="md"
         show={modalFalse}
