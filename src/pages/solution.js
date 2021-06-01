@@ -107,7 +107,7 @@ export const Solution = () => {
           aria-labelledby="contained-modal-title-vcenter"
         >
           <Modal.Header className="bg-success text-light">
-            <Modal.Title>Верно! 😀</Modal.Title>
+            <Modal.Title>Молодец! Ответил верно!.😀</Modal.Title>
           </Modal.Header>
           <Modal.Body className="d-flex justify-content-center">
             {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Вы прошли урок Урок №{currentQuest + 1}</h2> : <h2>Молодец! Так держать!</h2>}
