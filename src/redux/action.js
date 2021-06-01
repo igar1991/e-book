@@ -9,7 +9,10 @@ import {
   TRUE_ANSWER,
   NEXT_QUEST,
   ADD_THEME,
-  CLEAR_THEME
+  CLEAR_THEME,
+  SOLVET,
+  ERROR,
+  MISS
 } from "./actionTypes";
 
 export const addBook = (item) => ({
@@ -67,3 +70,12 @@ export const addTheme=(item)=>({
 export const clearTheme =()=> ({
     type: CLEAR_THEME
   })
+export const addSolvet =()=>({
+  type: SOLVET
+})
+export const addError =()=>({
+  type: ERROR
+})
+export const addMiss =()=>({
+  type: MISS
+})

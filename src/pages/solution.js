@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { falseAnswer, nextQuest, trueAnswer, addStartdata, addAllResult } from "../redux/action"
+import { falseAnswer, nextQuest, trueAnswer, addStartdata, addAllResult, addSolvet, addError, addMiss } from "../redux/action"
 import { useDispatch } from "react-redux";
 
 export const Solution = () => {
@@ -15,6 +15,7 @@ export const Solution = () => {
 
   const [name, setName] = useState('')
   const [numberClass, setNumberClass] = useState('')
+  const [curErr, setCurErr] = useState(0)
 
   const book = useSelector(state => state.bookReducer)
   const stateR = useSelector(state => state.resultReducer)
@@ -23,25 +24,49 @@ export const Solution = () => {
 
   const answerTrue = () => {
     if (allQuests.quests.length <= currentQuest + 1) {
+      dispatch(addSolvet())
       dispatch(trueAnswer(1));
       dispatch(addAllResult());
       his.push("/result")
     } else {
+      dispatch(addSolvet())
       dispatch(trueAnswer(1));
       dispatch(nextQuest(1));
     }
   };
+
+  const addfalseAnswer = () => {
+    dispatch(addError())
+    dispatch(falseAnswer(1))
+    setCurErr(1 + curErr)
+  }
+
+  const addMiss_ = () => {
+    if (allQuests.quests.length <= currentQuest + 1) {
+      dispatch(addMiss())
+      dispatch(falseAnswer(1))
+      dispatch(addAllResult());
+      his.push("/result")
+
+    } else {
+      dispatch(nextQuest(1));
+      dispatch(addMiss())
+      dispatch(falseAnswer(1))
+      setCurErr(0)
+    }
+
+  }
   return (
     <div className="book p-2">
-      {allQuests&&<><div className="d-flex justify-content-around p-1">
+      {allQuests && <><div className="d-flex justify-content-around p-1">
         <h2>Урок №{currentQuest + 1}</h2>
       </div>
-      <div className="d-flex justify-content-around p-1">
-        <h4>{allQuests.title}</h4>
-      </div>
-      <hr />
-      <div className="d-flex flex-wrap row justify-content-center m-3">
-        {allQuests.quests.map((item, index) => {
+        <div className="d-flex justify-content-around p-1">
+          <h4>{allQuests.title}</h4>
+        </div>
+        <hr />
+        <div className="d-flex flex-wrap row justify-content-center m-3">
+          {allQuests.quests.map((item, index) => {
             return (
               <div
                 key={index}
@@ -70,117 +95,125 @@ export const Solution = () => {
               </div>
             );
           })}
-      </div>
-      <hr />
-      <div>{allQuests.quests[currentQuest]}</div>
-      <Modal
-        size="md"
-        show={modalTrue}
-        backdrop="static"
-        keyboard={false}
-        centered
-        aria-labelledby="contained-modal-title-vcenter"
-      >
-        <Modal.Header className="bg-success text-light">
-          <Modal.Title>Верно! 😀</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="d-flex justify-content-center">
-          {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Вы прошли урок Урок №{currentQuest + 1}</h2> : <h2>Молодец! Так держать!</h2>}
-        </Modal.Body>
-        <Modal.Footer>
-          {(allQuests.quests.length <= currentQuest + 1) ? <button
-            type="button"
-            className="btn btn-success btn-block"
-            onClick={answerTrue}
-          >
-            Сохранить результаты
+        </div>
+        <hr />
+        <div>{allQuests.quests[currentQuest]}</div>
+        <Modal
+          size="md"
+          show={modalTrue}
+          backdrop="static"
+          keyboard={false}
+          centered
+          aria-labelledby="contained-modal-title-vcenter"
+        >
+          <Modal.Header className="bg-success text-light">
+            <Modal.Title>Верно! 😀</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="d-flex justify-content-center">
+            {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Вы прошли урок Урок №{currentQuest + 1}</h2> : <h2>Молодец! Так держать!</h2>}
+          </Modal.Body>
+          <Modal.Footer>
+            {(allQuests.quests.length <= currentQuest + 1) ? <button
+              type="button"
+              className="btn btn-success btn-block"
+              onClick={answerTrue}
+            >
+              Сохранить результаты
           </button> : <button
-            type="button"
-            className="btn btn-success btn-block"
-            onClick={answerTrue}
-          >
-            Далее
+              type="button"
+              className="btn btn-success btn-block"
+              onClick={answerTrue}
+            >
+              Далее
           </button>}
 
-        </Modal.Footer>
-      </Modal>
-      <Modal
-        size="md"
-        show={modalFalse}
-        backdrop="static"
-        keyboard={false}
-        centered
-        aria-labelledby="contained-modal-title-vcenter"
-      >
-        <Modal.Header className="bg-danger text-light">
-          <Modal.Title>Неверно! 😔</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h2>Не огорчайся! Попробуй еще раз!</h2>
-        </Modal.Body>
-        <Modal.Footer>
-          <button
-            type="button"
-            className="btn btn-danger btn-block"
-            onClick={() => dispatch(falseAnswer(1))}
-          >
-            Закрыть
+          </Modal.Footer>
+        </Modal>
+        <Modal
+          size="md"
+          show={modalFalse}
+          backdrop="static"
+          keyboard={false}
+          centered
+          aria-labelledby="contained-modal-title-vcenter"
+        >
+          <Modal.Header className="bg-danger text-light">
+            <Modal.Title>Неверно! 😔</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h2>Не огорчайся! Попробуй еще раз!</h2>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              type="button"
+              className="btn btn-danger btn-block"
+              onClick={addfalseAnswer}
+            >
+              Закрыть
           </button>
-        </Modal.Footer>
-      </Modal>
-      <Modal
-        size="lg"
-        show={stateR.modalName}
-        backdrop="static"
-        keyboard={false}
-        centered
-        aria-labelledby="contained-modal-title-vcenter"
-      >
-        <Modal.Header className="bg-success text-light">
-          <Modal.Title>Введите ваши данные</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+            {curErr > 2 && <button
+              type="button"
+              className="btn btn-warning btn-block"
+              onClick={addMiss_}
+            >
+              Пропустить
+          </button>}
 
-          <div className="row">
+          </Modal.Footer>
+        </Modal>
+        <Modal
+          size="lg"
+          show={stateR.modalName}
+          backdrop="static"
+          keyboard={false}
+          centered
+          aria-labelledby="contained-modal-title-vcenter"
+        >
+          <Modal.Header className="bg-success text-light">
+            <Modal.Title>Введите ваши данные</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
 
-            <div className="col-md-9">
-              <label htmlFor="name" className="form-label">
-                Фамилия и Имя
+            <div className="row">
+
+              <div className="col-md-9">
+                <label htmlFor="name" className="form-label">
+                  Фамилия и Имя
               </label>
-              <input
-                type="text"
-                className="form-control form-control-lg"
-                id="name"
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="col-md-3">
-              <label htmlFor="class" className="form-label">
-                Класс
+                <input
+                  type="text"
+                  className="form-control form-control-lg"
+                  id="name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="col-md-3">
+                <label htmlFor="class" className="form-label">
+                  Класс
               </label>
-              <input
-                type="text"
-                className="form-control form-control-lg"
-                id="class"
-                onChange={(e) => setNumberClass(e.target.value)}
-              />
-            </div>
+                <input
+                  type="text"
+                  className="form-control form-control-lg"
+                  id="class"
+                  onChange={(e) => setNumberClass(e.target.value)}
+                />
+              </div>
 
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <button
-            type="button"
-            className="btn btn-success btn-block"
-            onClick={() => {
-              dispatch(addStartdata(name, numberClass, book.title, allQuests.title))
-            }}
-          >
-            Начать
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              type="button"
+              className="btn btn-success btn-block"
+              onClick={() => {
+                dispatch(addStartdata(name, numberClass, book.title, allQuests.title))
+              }}
+            >
+              Начать
           </button>
-        </Modal.Footer>
-      </Modal></>}
-      
+          </Modal.Footer>
+        </Modal></>}
+
     </div>
   );
 };

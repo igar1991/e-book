@@ -9,3 +9,6 @@ export const NEXT_QUEST = 'NEXT_QUEST';
 export const ADD_START_DATA ='ADD_START_DATA';
 export const OPEN_MODAL_NAME='OPEN_MODAL_NAME';
 export const ADD_ALL_RESULT = 'ADD_ALL_RESULT';
+export const SOLVET ='SOLVET';
+export const ERROR = 'ERROR';
+export const MISS = 'MISS';

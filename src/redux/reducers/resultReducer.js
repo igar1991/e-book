@@ -2,6 +2,9 @@ import {
   ADD_START_DATA,
   OPEN_MODAL_NAME,
   ADD_ALL_RESULT,
+  SOLVET,
+  ERROR,
+  MISS,
 } from "../actionTypes";
 
 const initialState = {
@@ -10,10 +13,10 @@ const initialState = {
   nameStudent: "",
   numberClass: "",
   date: "",
-  solvet: 2,
-  error: 2,
-  miss: 1,
-  res: "good",
+  solvet: 0,
+  error: 0,
+  miss: 0,
+  res: "Хороший результат!",
   modalName: false,
   allResult: [],
 };
@@ -35,6 +38,21 @@ export const resultReducer = (state = initialState, { payload, type }) => {
         ...state,
         modalName: true,
       };
+    case SOLVET:
+      return {
+        ...state,
+        solvet: ++state.solvet
+      };
+    case ERROR:
+      return {
+        ...state,
+        error: ++state.error
+      };
+    case MISS:
+      return {
+        ...state,
+        miss: ++state.miss
+      };
     case ADD_ALL_RESULT:
       return {
         titleBook: "",
@@ -42,10 +60,10 @@ export const resultReducer = (state = initialState, { payload, type }) => {
         nameStudent: "",
         numberClass: "",
         date: "",
-        solvet: 2,
-        error: 2,
-        miss: 1,
-        res: "good",
+        solvet: 0,
+        error: 0,
+        miss: 0,
+        res: "Хороший результат!",
         modalName: false,
         allResult: [
           {
@@ -61,7 +79,7 @@ export const resultReducer = (state = initialState, { payload, type }) => {
             modalName: false,
           },
           ...state.allResult,
-          
+
         ],
       };
     default:
