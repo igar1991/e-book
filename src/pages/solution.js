@@ -19,6 +19,7 @@ export const Solution = () => {
 
   const book = useSelector(state => state.bookReducer)
   const stateR = useSelector(state => state.resultReducer)
+  const themeTitle = useSelector(state => state.themeReducer.title)
 
   let his = useHistory()
 
@@ -59,7 +60,7 @@ export const Solution = () => {
   return (
     <div className="book p-2">
       {allQuests && <><div className="d-flex justify-content-around p-1">
-        <h2>Урок №{currentQuest + 1}</h2>
+        <h2>{themeTitle}</h2>
       </div>
         <div className="d-flex justify-content-around p-1">
           <h4>{allQuests.title}</h4>

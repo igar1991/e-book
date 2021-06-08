@@ -34,7 +34,7 @@ export const Book = () => {
                 <div className="card-body">
                   <h4 className="card-title">{item.title}</h4>
                   <h5 className="card-title">{item.class}</h5>
-                  <p className="card-text">{`${item.theme.length} темы`}</p>
+                  <p className="card-text">{`${item.theme.length} раздела и 60 тем`}</p>
                   <NavLink to="menu">
                     <button
                       className="btn btn-primary"

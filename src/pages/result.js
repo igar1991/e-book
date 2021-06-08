@@ -13,7 +13,7 @@ export const Result = () => {
       <div className="row justify-content-around p-4">
         {allResult && allResult.map((item, index) => {
           return (
-            <div className="resultcards col-lg-2 col-md-6 m-1" key={index}>
+            <div className="resultcards col-lg-3 col-md-6 m-1" key={index}>
               <h3>{item.titleBook}</h3>
               <h4>{item.titleClass}</h4>
               <hr />

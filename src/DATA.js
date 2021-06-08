@@ -1,155 +1,99 @@
-import { Quest1 } from "./quest/quest1"
-import { Quest2 } from "./quest/quest2"
-import img1 from "./file/1k.png"
-
-
+import { Quest1 } from "./quest/quest1";
+import { Quest2 } from "./quest/quest2";
+import img1 from "./file/obh.png";
+import { ImagePic } from "./quest/ImagePic";
+import img2_1_1 from "./file/2_1/1.png";
+import img2_1_2 from "./file/2_1/2.png";
+import img2_1_3 from "./file/2_1/3.png";
+import img2_1_4 from "./file/2_1/4.png";
+import img2_1_5 from "./file/2_1/1.png";
+import img2_1_6 from "./file/2_1/1.png";
+import img2_1_7 from "./file/2_1/1.png";
+import img2_1_8 from "./file/2_1/1.png";
+import img2_1_9 from "./file/2_1/1.png";
+import img2_1_10 from "./file/2_1/1.png";
+import img2_1_11 from "./file/2_1/1.png";
 
 const Zog_book = {
-    titleimg: img1,
-    id: '1',
-    title: 'Математика',
-    class: "2-3 класс",
-    theme: [{
-        title: 'Тема один',
-        class: [{
-            title: 'Урок один',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />,<Quest2 />]
+  titleimg: img1,
+  id: "1",
+  title: "ОБЖ и культура поведения",
+  class: null,
+  theme: [
+    {
+      title: "Первый раздел: Безопасность",
+      class: [
+        {
+          title: "Тема №1. Основы ЗОЖ",
+          quests: [
+            <ImagePic
+              imgArr={[img2_1_1, img2_1_2, img2_1_3, img2_1_4]}
+              quiz="Говорят, что организм здорового человека работает как ...
+            Какое слово пропущено? Отметь подходящую картинку (нажми на неё)."
+            />,
+            <Quest1 />,
+            <Quest2 />,
+            <Quest1 />,
+            <Quest2 />,
+          ],
         },
         {
-            title: 'Урок два',
-            quests: [<Quest1 />, <Quest2 />]
+          title: "Тема №2",
+          quests: [<Quest1 />, <Quest2 />],
         },
         {
-            title: 'Урок три',
-            quests: [<Quest1 />, <Quest2 />]
+          title: "Тема №3",
+          quests: [<Quest1 />, <Quest2 />],
         },
         {
-            title: 'Урок четыре',
-            quests: [<Quest1 />, <Quest2 />]
-        }]
+          title: "Тема №4",
+          quests: [<Quest1 />, <Quest2 />],
+        },
+      ],
     },
     {
-        title: 'Тема два',
-        class: [{
-            title: 'Урок пять',
-            quests: [<Quest1 />, <Quest2 />]
+      title: "Второй раздел: Здоровье",
+      class: [
+        {
+          title: "Тема №1. Основы ЗОЖ",
+          quests: [<Quest1 />, <Quest2 />],
         },
         {
-            title: 'Урок шесть',
-            quests: [<Quest1 />, <Quest2 />]
+          title: "Тема №2",
+          quests: [<Quest1 />, <Quest2 />],
         },
         {
-            title: 'Урок семь',
-            quests: [<Quest1 />, <Quest2 />]
+          title: "Тема №3",
+          quests: [<Quest1 />, <Quest2 />],
         },
         {
-            title: 'Урок восемь',
-            quests: [<Quest1 />, <Quest2 />]
-        }]
+          title: "Тема №4",
+          quests: [<Quest1 />, <Quest2 />],
+        },
+      ],
     },
     {
-        title: 'Тема три',
-        class: [{
-            title: 'Урок девять',
-            quests: [<Quest1 />, <Quest2 />]
+      title: "Третий раздел: Культура поведения",
+      class: [
+        {
+          title: "Тема №9",
+          quests: [<Quest1 />, <Quest2 />],
         },
         {
-            title: 'Урок десять',
-            quests: [<Quest1 />, <Quest2 />]
+          title: "Тема №10",
+          quests: [<Quest1 />, <Quest2 />],
         },
         {
-            title: 'Урок одиннадцать',
-            quests: [<Quest1 />, <Quest2 />]
+          title: "Тема №11",
+          quests: [<Quest1 />, <Quest2 />],
         },
         {
-            title: 'Урок четыре',
-            quests: [<Quest1 />, <Quest2 />]
-        }]
+          title: "Тема №12",
+          quests: [<Quest1 />, <Quest2 />],
+        },
+      ],
     },
-    {
-        title: 'Тема три',
-        class: [{
-            title: 'Урок девять',
-            quests: [<Quest1 />, <Quest2 />]
-        },
-        {
-            title: 'Урок десять',
-            quests: [<Quest1 />, <Quest2 />]
-        },
-        {
-            title: 'Урок одиннадцать',
-            quests: [<Quest1 />, <Quest2 />]
-        },
-        {
-            title: 'Урок четыре',
-            quests: [<Quest1 />, <Quest2 />]
-        }]
-    }]
+  ],
+};
 
-}
-
-const Zog_book1 = {
-    titleimg: img1,
-    id: '2',
-    title: 'Физика',
-    class: "2-3 класс",
-    theme: [{
-        title: 'Тема пять',
-        class: [{
-            title: 'Урок один',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
-        },
-        {
-            title: 'Урок два',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />,<Quest1 />]
-        },
-        {
-            title: 'Урок три',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />,<Quest1 />,<Quest1 />]
-        },
-        {
-            title: 'Урок четыре',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />,<Quest1 />,<Quest1 />,<Quest1 />]
-        }]
-    },
-    {
-        title: 'Тема шесть',
-        class: [{
-            title: 'Урок один2',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
-        },
-        {
-            title: 'Урок два2',
-            quests: [<Quest1 />, <Quest2 />]
-        },
-        {
-            title: 'Урок три2',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
-        },
-        {
-            title: 'Урок четыре2',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
-        }]
-    },
-    {
-        title: 'Тема семь',
-        class: [{
-            title: 'Урок один3',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
-        },
-        {
-            title: 'Урок два3',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
-        },
-        {
-            title: 'Урок три3',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
-        },
-        {
-            title: 'Урок четыре3',
-            quests: [<Quest1 />, <Quest2 />,<Quest1 />]
-        }]
-    }]
-
-}
-export const DATA = [Zog_book,Zog_book1]
+export const DATA = [Zog_book];
