@@ -56,7 +56,7 @@ export const Book = () => {
       </div>
       <div className="col-lg-3 advantages">
         <div className="d-flex justify-content-around p-2">
-          <h2>Преимущества</h2>
+          <h2>Преимущества.</h2>
         </div>
         <div className="mb-5">
           <img
