@@ -4,32 +4,38 @@ import "react-image-picker/dist/index.css";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 
-export const ImagePic = ({ imgArr, quiz }) => {
+export const ImagePic = ({ imgArr, quiz, trueans }) => {
   const [value, setValue]=useState(null)
   const dispatch = useDispatch();
 
+  const currentAns =()=>{
+     if(trueans===value.value) {
+      dispatch(trueAnswer(1))
+     } else {
+      dispatch(falseAnswer(1))
+     }
+
+  }
+
   return (
     <div>
-      <p>{quiz}</p>
+      <div className="quiz-title">
+      <h4>{quiz}</h4>
+      </div>
       <ImagePicker
         images={imgArr.map((image, i) => ({ src: image, value: i }))}
         onPick={(image) => setValue(image)}
       />
-
-      <button
+      <div className="quiz-btn">
+        {value&&<button
         type="button"
-        className="btn btn-outline-primary btn-block"
-        onClick={() => dispatch(falseAnswer(1))}
+        className="btn btn btn-success btn-block"
+        onClick={currentAns}
       >
-        Неправильный ответ
-      </button>
-      <button
-        type="button"
-        className="btn btn-outline-primary btn-block"
-        onClick={() => dispatch(trueAnswer(1))}
-      >
-        Правильный ответ
-      </button>
+        Проверить
+      </button>}
+      
+      </div>
     </div>
   );
 };
