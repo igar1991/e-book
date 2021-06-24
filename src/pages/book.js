@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { DATA } from "../DATA";
 
 import { addBook, clearTheme } from "../redux/action";
+import { Quest2 } from "../quest/quest2";
 
 
 export const Book = () => {
