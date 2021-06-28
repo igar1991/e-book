@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { CardColumns } from "react-bootstrap";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -41,7 +39,9 @@ const getListStyle = (isDraggingOver) => ({
 export const Arrow = ({ quiz, description, ans, trueans }) => {
   const [state, setState] = useState(null);
   const dispatch = useDispatch();
-  const currentQuest = useSelector(state => state.solutionReducer.currentQuest)
+  const currentQuest = useSelector(
+    (state) => state.solutionReducer.currentQuest
+  );
 
   useEffect(() => {
     setState({ items: description });
@@ -52,8 +52,6 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
     if (!result.destination) {
       return;
     }
-    console.log(result);
-
     const items = reorder(
       state.items,
       result.source.index,
@@ -66,7 +64,6 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
   };
 
   const currentAns = () => {
-    console.log(state);
     let i = trueans.length;
     while (i--) {
       if (trueans[i] !== state.items[i]) return dispatch(falseAnswer(1));
@@ -122,6 +119,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
                               snapshot.isDragging,
                               provided.draggableProps.style
                             )}
+                            className="border border-dark text-center"
                           >
                             {item}
                           </div>
@@ -136,7 +134,6 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
           </div>
         </div>
       )}
-
       <div className="quiz-btn">
         {state && (
           <button
