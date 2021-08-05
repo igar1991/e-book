@@ -1,20 +1,8 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { falseAnswer, trueAnswer } from "../redux/action";
+import { useDispatch } from "react-redux";
 
-// fake data generator
-const getItems = (count, offset = 0) =>
-  Array.from({ length: count }, (v, k) => k).map((k) => ({
-    id: `item-${k + offset}-${new Date().getTime()}`,
-    content: `item ${k + offset}`,
-  }));
-
-const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
-
-  return result;
-};
 
 const move = (source, destination, droppableSource, droppableDestination) => {
   const sourceClone = Array.from(source);
@@ -29,7 +17,6 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
   return result;
 };
-const grid = 8;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
     userSelect: "none",
@@ -53,6 +40,9 @@ const getListStyle = (isDraggingOver) => ({
 });
 
 export const Dropword = () => {
+
+  const dispatch = useDispatch();
+
   const [state, setState] = useState([
     [],
     [],
@@ -61,6 +51,8 @@ export const Dropword = () => {
     [{ id: "2", content: "все потерял" }],
     [{ id: "3", content: "ничего не потерял" }],
   ]);
+
+  const trueans = ["3","1","2"]
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -92,6 +84,20 @@ export const Dropword = () => {
       }
     }
   }
+
+  const currentAns = () => {
+    let i = trueans.length;
+    let arrstate = state.slice(0,3)
+    while (i--) {
+      if(arrstate[i][0]) {
+        if (trueans[i] !== arrstate[i][0].id) return dispatch(falseAnswer(1))
+        return dispatch(trueAnswer(1));
+      }
+      else {
+        dispatch(falseAnswer(1))
+      }
+    }
+  };
 
   return (
     <div>
@@ -293,6 +299,17 @@ export const Dropword = () => {
           </Droppable>
           </div>
         </DragDropContext>
+      </div>
+      <div className="quiz-btn">
+        {state && (
+          <button
+            type="button"
+            className="btn btn btn-success btn-block"
+            onClick={currentAns}
+          >
+            Проверить
+          </button>
+        )}
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { Emphas } from "./quest/Emphas";
 import { Dropword } from "./quest/Dropword";
 import img1 from "./file/obh.png";
 import { ImagePic } from "./quest/ImagePic";
+import { ColorPic } from "./quest/ColorPic";
 import img2_1_1 from "./file/2_1/1.png";
 import img2_1_2 from "./file/2_1/2.png";
 import img2_1_3 from "./file/2_1/3.png";
@@ -94,12 +95,13 @@ const Zog_book = {
                 "Пищу надо пережёвывать тщательно, чтобы желудку легче было её переварить, и она быстрее усвоится.",
               ]}
             />,
+            <Dropword />
           ],
         },
         {
           title: "Тема №2",
           quests: [
-            <Dropword />,
+            <ColorPic />,
             <Quest2 />,
           ],
         },
