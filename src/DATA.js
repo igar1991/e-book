@@ -17,6 +17,8 @@ import img2_1_8 from "./file/2_1/1.png";
 import img2_1_9 from "./file/2_1/1.png";
 import img2_1_10 from "./file/2_1/1.png";
 import img2_1_11 from "./file/2_1/1.png";
+import rebus1 from "./file/2_1/rebus1.png";
+import { Rebus } from "./quest/Rebus";
 
 const Zog_book = {
   titleimg: img1,
@@ -127,11 +129,19 @@ const Zog_book = {
                 "Пищу надо пережёвывать тщательно, чтобы желудку легче было её переварить, и она быстрее усвоится.",
               ]}
             />,
+            <Rebus
+              img={rebus1}
+              quiz="Разгадай ребус и запиши, как называется процесс введения людям вакцин, препаратов, которые помогают сформировать иммунитет против многих инфекционных заболеваний."
+              trueans={"ВАКЦИНАЦИЯ"}
+            />,
           ],
         },
         {
           title: "Тема №2",
-          quests: [<Quest2 />],
+          quests: [
+            
+            <Quest2 />,
+          ],
         },
         {
           title: "Тема №3",
@@ -148,7 +158,7 @@ const Zog_book = {
       class: [
         {
           title: "Тема №1. Основы ЗОЖ",
-          quests: [<Quest1 />, <Quest2 />],
+          quests: [<Quest2 />],
         },
         {
           title: "Тема №2",
