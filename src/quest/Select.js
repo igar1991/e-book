@@ -49,7 +49,7 @@ export const Select = ({img,trueans,addCl, quiz, ans}) => {
       })}
       </div>
       <div className="col-5 d-flex justify-content-center align-content-center">
-      <img src={img} className="m-5" alt="Responsive image" />
+      <img src={img} className="m-5" alt="Responsive image" width="300px" />
       </div>
       </div>
       <div className="quiz-btn">

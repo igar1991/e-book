@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CirclePicker } from "react-color";
 
-export const ColorPic = ({arr, trueans }) => {
+export const ColorPic = ({arr, trueans, ans }) => {
   const dispatch = useDispatch();
 
-  const [arrY, setarrY] = useState(
-    arr.map(() => "#fff")
-  );
+  useEffect(()=>{
+    setarrY(arr.map(() => "#fff"))
+  },[arr])
+
+  const [arrY, setarrY] = useState(null);
 
   const [currentColor, setCurrentColor] = useState("#fff");
 
@@ -22,28 +24,22 @@ export const ColorPic = ({arr, trueans }) => {
 
 
   const currentAns = () => {
-    console.log(trueans)
-    console.log(arrY)
     let i = trueans.length;
     while (i--) {
       if (trueans[i] !== arrY[i]) return dispatch(falseAnswer(1));
     }
     return dispatch(trueAnswer(1));
+
   };
 
   return (
     <div>
       <div className="quiz-title">
-        <h4>
-          Если утверждение верное, закрасьте ячейку таблицы с ответом «да»
-          зелёным цветом, если неверное – ячейку таблицы с ответом «нет» красным
-          цветом. (цвета на палитре выбирай нажатием левой клавиши мыши; чтобы
-          закрасить ячейку, нажми в ней левой клавишей мыши)
-        </h4>
+        <h4>{ans}</h4>
       </div>
       <div className="d-flex flex-row justify-content-center">
         <ul className="list-group col-10">
-          {arr &&
+          {arrY &&
             arr.map((item, index) => {
               return (
                 <div className="d-flex flex-row justify-content-center" key={index}>
@@ -71,9 +67,9 @@ export const ColorPic = ({arr, trueans }) => {
           className="flex-column "
           circleSize={46}
           colors={[
-            "#0d6efd",
-            "#dc3545",
-            "#198754",
+            "#32adf0",
+            "#f74f5a",
+            "#18d945",
             "#ffc107",
             "#fd7e14",
           ]}
