@@ -1,0 +1,348 @@
+import React, { useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { falseAnswer, trueAnswer } from "../redux/action";
+import { useDispatch } from "react-redux";
+import img1 from "../file/2_1/imgd1.png";
+import img2 from "../file/2_1/imgd2.png";
+import img3 from "../file/2_1/imgd3.png";
+
+const move = (source, destination, droppableSource, droppableDestination) => {
+  const sourceClone = Array.from(source);
+  const destClone = Array.from(destination);
+  const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+  destClone.splice(droppableDestination.index, 0, removed);
+
+  const result = {};
+  result[droppableSource.droppableId] = sourceClone;
+  result[droppableDestination.droppableId] = destClone;
+
+  return result;
+};
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  userSelect: "none",
+  padding: "0.1rem",
+  borderRadius: "0.25rem",
+  fontSize: "calc(0.5rem + .7vw)",
+
+  // change background colour if dragging
+  background: isDragging ? "#9ec5fe" : "#ffe69c",
+
+  ...draggableStyle,
+});
+const getListStyle = (isDraggingOver) => ({
+  background: isDraggingOver ? "lightblue" : "#9ec5fe",
+  padding: 2,
+  minWidth: 200,
+  borderRadius: "0.25rem",
+  fontSize: "calc(0.5rem + .7vw)",
+  minHeight: 200,
+  margin: 2,
+});
+
+export const Imgdrop = () => {
+  const dispatch = useDispatch();
+
+  const [state, setState] = useState([
+    [],
+    [],
+    [],
+    [{ id: "1", content: img1 }],
+    [{ id: "2", content: img2 }],
+    [{ id: "3", content: img3 }],
+  ]);
+
+  const trueans = ["2", "3", "1"];
+
+  function onDragEnd(result) {
+    const { source, destination } = result;
+
+    // dropped outside the list
+    if (!destination) {
+      return;
+    }
+    const sInd = +source.droppableId;
+    const dInd = +destination.droppableId;
+
+    if (sInd === dInd) {
+      //   const items = reorder(state[sInd], source.index, destination.index);
+      //   const newState = [...state];
+      //   newState[sInd] = items;
+      //   setState(newState);
+      return;
+    } else {
+      const result = move(state[sInd], state[dInd], source, destination);
+      if (result[dInd].length == 2) {
+        return;
+      } else {
+        const newState = [...state];
+        newState[sInd] = result[sInd];
+        newState[dInd] = result[dInd];
+        console.log(result[dInd]);
+
+        setState(newState);
+        console.log(state)
+      }
+    }
+  }
+
+  const currentAns = () => {
+    let i = trueans.length;
+    let arrstate = state.slice(0, 3);
+    while (i--) {
+      if (arrstate[i][0]) {
+        if (trueans[i] !== arrstate[i][0].id) return dispatch(falseAnswer(1));
+        return dispatch(trueAnswer(1));
+      } else {
+        dispatch(falseAnswer(1));
+      }
+    }
+  };
+
+  return (
+    <div>
+      <div className="quiz-title">
+        <h4>
+          Перенеси в каждый прямоугольник под описанием нужную картинку. <br />
+          (зажимай картинку левой клавишей мыши и перетаскивай в нужное место)
+        </h4>
+      </div>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="d-flex justify-content-around">
+          <div class="card text-center bg-success col-lg-3 col-sm-4 pt-2 pb-2">
+              <p
+                class="card-text text-white "
+                style={{
+                  fontSize: "calc(0.8rem + .7vw)",
+                }}
+              >
+                Ромашку применяют как успокаивающее, противоспалительное
+                средство. Отваром ромашки полощут горло, например.
+              </p>
+          </div>
+          <div class="card text-center bg-success col-lg-3 col-sm-4 pt-2 pb-2">
+            <p
+                class="card-text text-white"
+                style={{
+                  fontSize: "calc(0.8rem + .7vw)",
+                }}
+              >
+                Листья подорожника используют для заживления ран, порезов; а
+                также – при укусах пчёл, ос и даже змей.
+              </p>
+          </div>
+          <div class="card text-center bg-success col-lg-3 col-sm-4 pt-2 pb-2">
+            <p
+                class="card-text text-white"
+                style={{
+                  fontSize: "calc(0.8rem + .7vw)",
+                }}
+              >
+                Иван-чай (кипрей) заваривают как чай. Используют при многих
+                заболеваниях, а также как успокоительное средство.
+              </p>
+          </div>
+        </div>
+        <div className="d-flex justify-content-around">
+          <Droppable droppableId={`${0}`}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {state[0].map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        <div style={{width:200, height:  200}}>
+                        <img src={item.content} alt="1" className="img-fluid w-100" />
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId={`${1}`}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {state[1].map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        <div style={{width:200, height:  200}}>
+                        <img src={item.content} alt="1" className="img-fluid w-100" />
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId={`${2}`}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {state[2].map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        <div style={{width:200, height:  200}}>
+                        <img src={item.content} alt="1" className="img-fluid w-100" />
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </div>
+        <div className="mt-5 d-flex flex-wrap justify-content-center">
+          <Droppable droppableId={`${3}`}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {state[3].map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        className="border border-dark rounded"
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        <div style={{width:200, height:  200}}>
+                        <img src={item.content} alt="1" className="img-fluid w-100" />
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId={`${4}`}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {state[4].map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        className="border border-dark rounded"
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        <div style={{width:200, height:  200}}>
+                        <img src={item.content} alt="1" className="img-fluid w-100" />
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <Droppable droppableId={`${5}`}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {state[5].map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        className="border border-dark rounded"
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
+                        <div style={{width:200, height:  200}}>
+                        <img src={item.content} alt="1" className="img-fluid w-100" />
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </div>
+      </DragDropContext>
+      <div className="quiz-btn">
+        {state && (
+          <button
+            type="button"
+            className="btn btn btn-success btn-block"
+            onClick={currentAns}
+          >
+            Проверить
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};

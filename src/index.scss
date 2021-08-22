@@ -50,3 +50,22 @@ code {
 .quiz-btn {
   margin: 1.5rem 15% 1.5rem 15%;
 }
+
+.perek {
+  text-decoration: line-through !important;
+}
+.circle-picker {
+  width: 100% !important;
+}
+.cl-par {
+  padding: 1rem;
+  background-color: white;
+  height: fit-content;
+  border-radius: 1rem;
+  box-shadow:  inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1)
+}
+.cl-par2 {
+  width: 15px;
+  border-radius: 1rem;
+  box-shadow:  inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1)
+}

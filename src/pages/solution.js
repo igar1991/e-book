@@ -20,6 +20,8 @@ export const Solution = () => {
   const book = useSelector(state => state.bookReducer)
   const stateR = useSelector(state => state.resultReducer)
   const themeTitle = useSelector(state => state.themeReducer.title)
+  const bg = useSelector(state => state.themeReducer.bg)
+
 
   let his = useHistory()
 
@@ -58,7 +60,7 @@ export const Solution = () => {
 
   }
   return (
-    <div className="book p-2">
+    <div className="book p-2"  style={{ backgroundImage: `url(${bg})` }}>
       {allQuests && <><div className="d-flex justify-content-around p-1">
         <h2>{themeTitle}</h2>
       </div>
