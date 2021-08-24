@@ -30,6 +30,8 @@ import i7 from "./file/2_2/i7.png";
 import select3 from "./file/2_2/3.png";
 import select4 from "./file/2_2/4.png";
 import select5 from "./file/2_2/5.jpg";
+import { SelectedWord } from "./quest/SelectedWord";
+import { ColorWord } from "./quest/ColorWord";
 
 
 
@@ -178,7 +180,6 @@ const Zog_book = {
               img={docter21}
               ans={[
                 { q: "Хорошее настроение", cl: "text-dark" },
-                { q: "Хорошее настроение", cl: "text-dark" },
                 { q: "Соблюдение режима дня", cl: "text-dark" },
                 { q: "Дружба с вредными привычками", cl: "text-dark" },
                 { q: "Личная гигиена", cl: "text-dark" },
@@ -192,7 +193,6 @@ const Zog_book = {
                 true,
                 true,
                 false,
-                true,
                 true,
                 true,
                 true,
@@ -308,26 +308,13 @@ const Zog_book = {
             trueans={[false, false, false, true, false]}
             addCl={"text-white"}
           />,
+          <SelectedWord />
           ],
         },
         {
           title: "Тема №3",
           quests: [
-            <Select
-            quiz={
-              "Глядя на рисунок, повтори, как правильно мыть руки. Ниже прочти правила. Удали неверное правило. (нажми один раз левой клавиши мыши на предложение)"
-            }
-            img={select5}
-            ans={[
-              { q: "Руки надо мыть тёплой, а не холодной или горячей водой", cl: "text-dark" },
-              { q: "Нужно хорошо намыливать руки – с обеих сторон", cl: "text-dark" },
-              { q: "Необходимо хорошо тереть руки друг о друга, уделяя внимание запястьям, пальцам, коже между пальцами и ногтям", cl: "text-dark" },
-              { q: "Мыло можно до конца не смывать", cl: "text-dark" },
-              { q: "Руки надо мыть не менее 15 секунд", cl: "text-dark" }
-            ]}
-            trueans={[false, false, false, true, false]}
-            addCl={"text-white"}
-          />,
+            <ColorWord />,
             <Quest2 />,
           ],
         },
