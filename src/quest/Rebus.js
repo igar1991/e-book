@@ -25,7 +25,7 @@ export const Rebus = ({ quiz, img, trueans }) => {
         <h4>{quiz}</h4>
       </div>
       <div className="d-flex justify-content-center">
-        <img src={img} className="img-fluid col-sm-11 col-lg-8" alt="rebus" />
+        {img&&<img src={img} className="img-fluid col-sm-11 col-lg-8" alt="rebus" />}
       </div>
       <div className="d-flex justify-content-center">
           {trueans&&trueans.split("").map((item, index)=>{
