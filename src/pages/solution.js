@@ -68,12 +68,13 @@ export const Solution = () => {
           <h4>{allQuests.title}</h4>
         </div>
         <hr />
-        <div className="d-flex flex-wrap row justify-content-center m-3">
+        <button onClick={()=>dispatch(trueAnswer(1))}>NEXT</button>
+        <div className="d-flex flex-wrap flex-row justify-content-center m-3">
           {allQuests.quests.map((item, index) => {
             return (
               <div
                 key={index}
-                className="row justify-content-center align-content-center text-primary ml-1 mr-1 mt-1"
+                className="flex-row justify-content-center align-content-center text-primary ms-1 me-1 mt-1"
               >
                 {currentQuest <= index ? (
                   <div

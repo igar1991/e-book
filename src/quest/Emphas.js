@@ -95,8 +95,7 @@ export const Emphas = ({ quiz, ans, trueans }) => {
       </div>
       <div className="quiz-btn">
         <button
-            type="button"
-            className="btn btn btn-success btn-block"
+            className="btn btn-success w-100 btn-lg"
             onClick={currentAns}
           >
             Проверить

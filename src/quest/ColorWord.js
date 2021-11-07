@@ -72,7 +72,7 @@ export const ColorWord = () => {
   const changeBackground = (index) => {
     setArrClass(
       arrClass.map((item, i) => {
-        if (index == i) {
+        if (index === i) {
           return { word: item.word, cl: curColor };
         } else {
           return item;

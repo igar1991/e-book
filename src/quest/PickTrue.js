@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
+import { CheckButton } from "../components/checkButton";
 
 export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
 
     const dispatch = useDispatch();
-    const newArr = ans.map((i,ind)=>ind)
+    const newArr = ans.map((i, ind) => ind)
 
     const [state, setState] = useState(null)
     const [value, setValue] = useState(newArr)
@@ -23,9 +24,9 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
         return dispatch(trueAnswer(1));
     };
 
-    const handlerPick =(text, i)=>{
-        const arr = value.map((item, index)=>index===i?text:item)
-        setValue(arr)        
+    const handlerPick = (text, i) => {
+        const arr = value.map((item, index) => index === i ? text : item)
+        setValue(arr)
     }
 
 
@@ -44,8 +45,8 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
                         return (
                             <div className="d-flex">
                                 <div className="list-group list-group-horizontal">
-                                    <a href="#!" className={`list-group-item list-group-item-action d-flex align-items-center ${value[index]===arrans[0]?"active":""}`} onClick={()=>handlerPick(arrans[0],index)}>{arrans[0]}</a>
-                                    <a href="#!" className={`list-group-item list-group-item-action d-flex align-items-center ${value[index]===arrans[1]?"active":""}`} onClick={()=>handlerPick(arrans[1], index)}>{arrans[1]}</a>
+                                    <button href="#!" className={`list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[0] ? "active" : ""}`} onClick={() => handlerPick(arrans[0], index)}>{arrans[0]}</button>
+                                    <button href="#!" className={`list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[1] ? "active" : ""}`} onClick={() => handlerPick(arrans[1], index)}>{arrans[1]}</button>
                                 </div>
                                 <a href="#!" className={classes} key={index}>{item}</a>
                             </div>
@@ -53,16 +54,7 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
                     })}
                 </div>
             </div>
-            <div className="quiz-btn">
-                <button
-                    type="button"
-                    className="btn btn btn-success btn-block"
-                    onClick={currentAns}
-                >
-                    Проверить
-                </button>
-            </div>
-
+            <CheckButton currentAns={currentAns} />
         </div>
     );
 };

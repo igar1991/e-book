@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
+import { CheckButton } from "../components/checkButton";
 
 export const Rebus = ({ quiz, img, trueans }) => {
   const dispatch = useDispatch();
@@ -44,15 +45,7 @@ export const Rebus = ({ quiz, img, trueans }) => {
           })}
 
       </div>
-      <div className="quiz-btn">
-        <button
-          type="button"
-          className="btn btn btn-success btn-block"
-          onClick={currentAns}
-        >
-          Проверить
-        </button>
-      </div>
+      <CheckButton currentAns={currentAns} />
     </div>
   );
 };
