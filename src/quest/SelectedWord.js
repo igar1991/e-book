@@ -13,7 +13,7 @@ export const SelectedWord = () => {
 
   const addValue = (value, index) => {
       let arr = state.map((item,i)=>{
-          if(i==index){
+          if(i===index){
               return value
           } else {
               return item

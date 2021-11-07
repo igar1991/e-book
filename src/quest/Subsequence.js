@@ -2,25 +2,28 @@ import React, { useEffect, useState } from "react";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 
-export const Subsequence = ({img,trueans, quiz, ans}) => {
+export const Subsequence = ({img,trueans, quiz, ans, arrans}) => {
 
   const dispatch = useDispatch();
 
   const [state, setState]= useState(null)
+  const [value, setValue]=useState(arrans)
 
   useEffect(()=>{
     setState(ans)
-  },[quiz])
+  },[ans])
 
-  const currentAns =()=>{
+  const currentAns = () => {
+    console.log(trueans)
+    console.log(value)
+   
     let i = trueans.length;
-    let arrstate = state.map((item)=>item.cl)
     while (i--) {
-      if (trueans[i] !== arrstate[i]) return dispatch(falseAnswer(1));
+      if (trueans[i] !== value[i]) return dispatch(falseAnswer(1));
     }
     return dispatch(trueAnswer(1));
+  };
 
-  }
 
   return (
     <div>
@@ -30,14 +33,25 @@ export const Subsequence = ({img,trueans, quiz, ans}) => {
       <div className="d-flex">
       <div className="col-7">
       {state&&state.map((item, index)=>{
-        let classes = `list-group-item list-group-item-action text-center`
+        let classes = `list-group-item list-group-item-action`
         return (
-          <a href="#!" className={classes} key={index}>{item}</a>
+          <div>
+            
+          <a href="#!" className={classes} key={index}><input
+                key={index}
+                type="text"
+                className="text-center text-uppercase m-1"
+                style={{ fontSize: "calc(0.4rem + 1vw)", width: "calc(0.3rem + 2.5vw)" }}
+                maxlength="1"
+                value={value[index]}
+                onChange={(v)=>setValue(value.map((it,ind)=>ind===index? v.target.value : it))}
+              />{item}</a>
+          </div>
         )
       })}
       </div>
       <div className="col-5 d-flex justify-content-center align-content-center">
-      <img src={img} className="m-5" alt="Responsive image" />
+      <img src={img} className="m-5" alt="Responsive" />
       </div>
       </div>
       <div className="quiz-btn">
