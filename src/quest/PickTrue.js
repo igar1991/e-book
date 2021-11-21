@@ -41,14 +41,13 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
             <div className="d-flex justify-content-center">
                 <div className="col-11">
                     {state && state.map((item, index) => {
-                        let classes = `list-group-item list-group-item-action`
                         return (
-                            <div className="d-flex">
+                            <div className="d-flex" key={index}>
                                 <div className="list-group list-group-horizontal">
                                     <button href="#!" className={`list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[0] ? "active" : ""}`} onClick={() => handlerPick(arrans[0], index)}>{arrans[0]}</button>
                                     <button href="#!" className={`list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[1] ? "active" : ""}`} onClick={() => handlerPick(arrans[1], index)}>{arrans[1]}</button>
                                 </div>
-                                <a href="#!" className={classes} key={index}>{item}</a>
+                                <div className={`list-group-item list-group-item-action`} key={index}>{item}</div>
                             </div>
                         )
                     })}

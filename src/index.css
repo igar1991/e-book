@@ -53,6 +53,9 @@ code {
 .perek {
   text-decoration: line-through !important;
 }
+.thumbnail {
+  height: auto !important;
+}
 .circle-picker {
   width: 100% !important;
 }

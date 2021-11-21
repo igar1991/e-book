@@ -3,8 +3,10 @@ import ImagePicker from "react-image-picker";
 import "react-image-picker/dist/index.css";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
+import { CheckButton } from "../components/checkButton";
 
 export const ImagePic = ({ imgArr, quiz, trueans }) => {
+
   const [value, setValue] = useState(null);
   const dispatch = useDispatch();
 
@@ -35,17 +37,8 @@ export const ImagePic = ({ imgArr, quiz, trueans }) => {
         onPick={(image) => setValue(image.map((item) => item.value))}
         multiple={true}
       />
-      <div className="quiz-btn">
-        {value && (
-          <button
-            type="button"
-            className="btn btn btn-success btn-block"
-            onClick={currentAns}
-          >
-            Проверить
-          </button>
-        )}
-      </div>
+      <CheckButton currentAns={currentAns} dic={value?false:true} />
+
     </div>
   );
 };

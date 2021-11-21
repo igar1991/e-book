@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
+import { CheckButton } from "../components/checkButton";
 
-export const Emphas = ({ quiz, ans, trueans }) => {
+export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
   const [one, setOne] = useState(null);
   const [two, setTwo] = useState(null);
   const [tree, setTree] = useState(null);
@@ -45,7 +46,7 @@ export const Emphas = ({ quiz, ans, trueans }) => {
 
   const currentAns = () => {
     let i = trueans.length;
-    let arrstate = [one,two,tree]
+    let arrstate = [one, two, tree]
     while (i--) {
       if (trueans[i] !== arrstate[i]) return dispatch(falseAnswer(1));
     }
@@ -61,17 +62,18 @@ export const Emphas = ({ quiz, ans, trueans }) => {
         {ans &&
           ans.map((item, index) => {
             return (
-              <div className="col-lg-3 col-12 mb-2 mt-2">
-                <div
+              <div key={index} className="col-lg-3 col-12 mb-2 mt-2">
+                {!ansImg && <div
                   className="text-center text-white border border-dark rounded p-2"
-                  key={index}
                   style={{
                     fontSize: "calc(0.8rem + .7vw)",
                     backgroundColor: `${clr[index]}`,
                   }}
                 >
                   {item.q}
-                </div>
+                </div>}
+                {ansImg && <div className="d-flex justify-content-center"><img src={item.q} alt="1" style={{ width: 150, height: 150 }} /></div>}
+
                 <div
                   className="list-group"
                   style={{
@@ -79,28 +81,20 @@ export const Emphas = ({ quiz, ans, trueans }) => {
                   }}
                 >
                   {item.arr.map((i, ind) => (
-                    <a
+                    <button
                       key={ind}
-                      href="#!"
                       className={activeCl(ind, index)}
                       onClick={() => toggle(ind, index)}
                     >
                       {i}
-                    </a>
+                    </button>
                   ))}
                 </div>
               </div>
             );
           })}
       </div>
-      <div className="quiz-btn">
-        <button
-            className="btn btn-success w-100 btn-lg"
-            onClick={currentAns}
-          >
-            Проверить
-          </button>
-      </div>
+      <CheckButton currentAns={currentAns} />
     </>
   );
 };

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CirclePicker } from "react-color";
+import { CheckButton } from "../components/checkButton";
 
-export const ColorPic = ({arr, trueans, ans }) => {
+export const ColorPic = ({arr, trueans, ans, dec }) => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -36,32 +37,35 @@ export const ColorPic = ({arr, trueans, ans }) => {
     <div>
       <div className="quiz-title">
         <h4>{ans}</h4>
+        {dec&&<p>{dec}</p>}
       </div>
       <div className="d-flex flex-row justify-content-center">
-        <ul className="list-group col-10">
+        <ul className="list-group col-9 col-sm-6 col-lg-10 col-md-10 me-2">
           {arrY &&
             arr.map((item, index) => {
               return (
                 <div className="d-flex flex-row justify-content-center" key={index}>
-                  <a
-                    href="#!"
+                  <button
                     className="list-group-item list-group-item-action text-center col-sm-10"
                     style={{ backgroundColor: arrY[index] }}
                     onClick={() => changeColorY(index)}
                   >
                     {item}
-                  </a>
+                  </button>
                 </div>
               );
             })}
-          <button
+            <div className="d-flex flex-row-reverse">
+            <button
             type="button"
-            className="btn btn-warning btn-block mt-2"
+            className="btn btn-warning btn-block mt-2 col-5 col-sm-5 col-lg-3 col-md-4 text-white"
             onClick={() => setCurrentColor("#fff")}
           >
             Ластик
           </button>
+          </div>
         </ul>
+        
         <div className="cl-par d-flex">
         <CirclePicker
           className="flex-column "
@@ -79,15 +83,7 @@ export const ColorPic = ({arr, trueans, ans }) => {
         </div>
         
       </div>
-      <div className="quiz-btn">
-        <button
-          type="button"
-          className="btn btn btn-success btn-block"
-          onClick={currentAns}
-        >
-          Проверить
-        </button>
-      </div>
+      <CheckButton currentAns={currentAns} />
     </div>
   );
 };
