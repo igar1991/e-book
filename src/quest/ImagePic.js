@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImagePicker from "react-image-picker";
 import "react-image-picker/dist/index.css";
 import { falseAnswer, trueAnswer } from "../redux/action";
@@ -8,7 +8,12 @@ import { CheckButton } from "../components/checkButton";
 export const ImagePic = ({ imgArr, quiz, trueans }) => {
 
   const [value, setValue] = useState(null);
+  const [arrnew, setArr] = useState(null);
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    setArr(imgArr)
+  },[imgArr])
 
   const currentAns = () => {
     let arr = value.sort(function (a, b) {
@@ -21,6 +26,7 @@ export const ImagePic = ({ imgArr, quiz, trueans }) => {
       while (i--) {
         if (trueans[i] !== arr[i]) return dispatch(falseAnswer(1));
       }
+      setValue(null)
       return dispatch(trueAnswer(1));
 
     }
@@ -32,13 +38,12 @@ export const ImagePic = ({ imgArr, quiz, trueans }) => {
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>
-      <ImagePicker
-        images={imgArr.map((image, i) => ({ src: image, value: i }))}
+      {arrnew&&<ImagePicker
+        images={arrnew.map((image, i) => ({ src: image, value: i }))}
         onPick={(image) => setValue(image.map((item) => item.value))}
         multiple={true}
-      />
+      />}
       <CheckButton currentAns={currentAns} dic={value?false:true} />
-
     </div>
   );
 };

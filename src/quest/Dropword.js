@@ -72,7 +72,7 @@ export const Dropword = () => {
       return;
     } else {
       const result = move(state[sInd], state[dInd], source, destination);
-      if (result[dInd].length == 2) {
+      if (result[dInd].length === 2) {
         return;
       } else {
         const newState = [...state];

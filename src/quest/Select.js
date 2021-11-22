@@ -3,40 +3,38 @@ import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CheckButton } from "../components/checkButton";
 
-export const Select = ({ img, trueans, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2, ansnew }) => {
+export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2, ansnew }) => {
 
   const dispatch = useDispatch();
-
-  const anstrue = trueans.map((item) => item ? addCl : "text-dark")
 
   const [state, setState] = useState(null)
 
   useEffect(() => {
+    const goans = ans.map((e,i)=>{
+      return {...e, b:false}
+    }).sort(() => Math.random() - 0.5)
     if (ansnew) {
-      setState([...ans, ...ansnew])
+      const newgoans = ansnew.map((e,i)=>{
+        return {...e, b:false}
+      }).sort(() => Math.random() - 0.5)
+      setState([...goans, ...newgoans])
     } else {
-      setState(ans)
+      setState(goans)
     }
   }, [ans, ansnew])
 
-  const changeClass = (index) => {
-    setState(state.map((item, i) => {
-      if (index === i) {
-        return { q: item.q, cl: item.cl === addCl ? "text-dark" : addCl }
-      }
-      return item
-    }))
-
+  const changeClass = (id) => {
+    const newarrr = state.map((it)=>it.id===id?{...it,b: !it.b }:it)
+    setState(newarrr)
   }
 
   const currentAns = () => {
-    let i = anstrue.length;
-    let arrstate = state.map((item) => item.cl)
-    while (i--) {
-      if (anstrue[i] !== arrstate[i]) return dispatch(falseAnswer(1));
+    for(let i=0; i<state.length; i++) {
+      if(state[i].a!==state[i].b) {
+      return dispatch(falseAnswer(1))
+      } 
     }
-    return dispatch(trueAnswer(1));
-
+    dispatch(trueAnswer(1))
   }
 
   return (
@@ -51,7 +49,7 @@ export const Select = ({ img, trueans, addCl, quiz, ans, quiz2, quiz3, newquiz1,
           <h5>{newquiz1 && newquiz1}</h5>
           {state && state.filter((item, i) => i < ans.length).map((item, index) => {
             return (
-              <button className={`list-group-item list-group-item-action text-center ${item.cl}`} key={index} onClick={() => changeClass(index)}>{item.q}</button>
+              <button className={`list-group-item list-group-item-action text-center ${item.b&&addCl}`} key={index} onClick={() => changeClass(item.id)}>{item.q}</button>
             )
           })}
         </div>
@@ -61,11 +59,11 @@ export const Select = ({ img, trueans, addCl, quiz, ans, quiz2, quiz3, newquiz1,
         <h5>{newquiz2 && newquiz2}</h5>
         {state && state.filter((item, i) => i >= ans.length).map((item, index) => {
           return (
-            <button className={`list-group-item list-group-item-action text-center ${item.cl}`} key={index} onClick={() => changeClass(Number(index) + Number(ansnew.length) - 2)}>{item.q}</button>
+            <button className={`list-group-item list-group-item-action text-center ${item.b&&addCl}`} key={index} onClick={() => changeClass(item.id)}>{item.q}</button>
           )
         })}
       </div>
-      <CheckButton currentAns={currentAns} />
+     <CheckButton currentAns={currentAns} />
     </div>
   );
 };

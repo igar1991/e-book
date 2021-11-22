@@ -45,7 +45,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
 
   useEffect(() => {
     setState({ items: description });
-  }, [currentQuest]);
+  }, [description]);
 
   const onDragEnd = (result) => {
     // dropped outside the list

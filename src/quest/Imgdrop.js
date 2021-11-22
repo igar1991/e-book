@@ -112,8 +112,8 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h, dec }
               {item}
             </h4>
           </div>)}
-          {ansImg && ans?.map((item, index) => <div key={index} className="d-flex justify-content-center col-lg-3 col-sm-4 pt-2 pb-2" >
-            <img src={item} alt="1" style={{ height: 200 }} />
+          {ansImg && ans?.map((item, index) => <div key={index} className="d-flex justify-content-center col-lg-4 col-sm-4 col-4 pt-2" >
+            <img src={item} alt="1" style={{ height: h }} />
           </div>)}
         </div>
         <div className="d-flex flex-wrap">

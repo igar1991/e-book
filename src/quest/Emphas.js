@@ -4,49 +4,25 @@ import { useDispatch } from "react-redux";
 import { CheckButton } from "../components/checkButton";
 
 export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
-  const [one, setOne] = useState(null);
-  const [two, setTwo] = useState(null);
-  const [tree, setTree] = useState(null);
+
+  const [value, setValue] = useState({});
+
   const dispatch = useDispatch();
 
 
   const clr = ["#198754", "#6f42c1", "#dc3545", "#198754"];
 
   const toggle = (i, index) => {
-    if (index === 0) {
-      setOne(i);
-    } else if (index === 1) {
-      setTwo(i);
-    } else {
-      setTree(i);
-    }
-  };
-
-  const activeCl = (i, index) => {
-    if (index === 0) {
-      if (i === one) {
-        return "list-group-item list-group-item-action text-center active";
-      } else {
-        return "list-group-item list-group-item-action text-center";
-      }
-    } else if (index === 1) {
-      if (i === two) {
-        return "list-group-item list-group-item-action text-center active";
-      } else {
-        return "list-group-item list-group-item-action text-center";
-      }
-    } else {
-      if (i === tree) {
-        return "list-group-item list-group-item-action text-center active";
-      } else {
-        return "list-group-item list-group-item-action text-center";
-      }
-    }
+    setValue({...value, [index]: i})
   };
 
   const currentAns = () => {
     let i = trueans.length;
-    let arrstate = [one, two, tree]
+    let arrstate = []
+
+    for( let j =0; j<i; j++) {
+      arrstate.push(value[j])
+    }    
     while (i--) {
       if (trueans[i] !== arrstate[i]) return dispatch(falseAnswer(1));
     }
@@ -83,7 +59,7 @@ export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
                   {item.arr.map((i, ind) => (
                     <button
                       key={ind}
-                      className={activeCl(ind, index)}
+                     className={`list-group-item list-group-item-action text-center ${value[index]===ind&&'active'}`}
                       onClick={() => toggle(ind, index)}
                     >
                       {i}
