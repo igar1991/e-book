@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Sele } from "../components/sele";
 import { CheckButton } from "../components/checkButton";
 
-export const SelectedWord = ({quiz, trueAns, arrText, arrWord}) => {
+export const SelectedWord = ({quiz, trueAns, arrText, arrWord, img}) => {
   const dispatch = useDispatch();
 
     const [state, setState]=useState([0,0,0,0,0,0,0])
@@ -37,7 +37,9 @@ export const SelectedWord = ({quiz, trueAns, arrText, arrWord}) => {
       </div>
       <div className="text-center m-2">
         {arrText.map((item, index)=><h5 className="d-inline">{item}{index<arrWord.length&&<Sele arr={arrWord[index]} addValue={addValue} n={index} />}</h5>)}
+        {img&&<img src={img} alt="img" />}
       </div>
+      
       <CheckButton currentAns={currentAns} />
     </div>
   );

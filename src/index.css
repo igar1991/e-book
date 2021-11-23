@@ -55,6 +55,7 @@ code {
 }
 .thumbnail {
   height: auto !important;
+  width: 200px !important;
 }
 .circle-picker {
   width: 100% !important;

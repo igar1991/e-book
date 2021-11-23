@@ -3,7 +3,7 @@ import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CheckButton } from "../components/checkButton";
 
-export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2, ansnew }) => {
+export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2, ansnew, gor }) => {
 
   const dispatch = useDispatch();
 
@@ -44,8 +44,8 @@ export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2
         <p>{quiz2 && quiz2}</p>
         <h4>{quiz3 && quiz3}</h4>
       </div>
-      <div className="d-flex flex-wrap">
-        <div className="col-lg-7 col-sm-11">
+      <div className="d-flex flex-wrap justify-content-center">
+        <div className={`${img&&`col-lg-${gor?'2':'7'}`} col-sm-${gor?'2':'11'} col-${gor?'2':'11'}`}>
           <h5>{newquiz1 && newquiz1}</h5>
           {state && state.filter((item, i) => i < ans.length).map((item, index) => {
             return (
@@ -53,8 +53,8 @@ export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2
             )
           })}
         </div>
-        {img && <div className="col-lg-5 col-sm-11 d-flex justify-content-center align-content-center">
-          <img src={img} className="m-3" alt="Responsive" style={{ maxWidth: 400 }} />
+        {img && <div className={`col-lg-${gor?'9':'5'} col-sm-${gor?'9':'11'} col-${gor?'9':'11'} d-flex justify-content-center align-content-center`}>
+          <img src={img} className="m-3" alt="Responsive" style={{ maxWidth: gor?"70vw":400, height: 'auto'}} />
         </div>}
         <h5>{newquiz2 && newquiz2}</h5>
         {state && state.filter((item, i) => i >= ans.length).map((item, index) => {

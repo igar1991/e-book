@@ -5,15 +5,15 @@ import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CheckButton } from "../components/checkButton";
 
-export const ImagePic = ({ imgArr, quiz, trueans }) => {
+export const ImagePic = ({ imgArr, quiz, trueans, des }) => {
 
   const [value, setValue] = useState(null);
   const [arrnew, setArr] = useState(null);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     setArr(imgArr)
-  },[imgArr])
+  }, [imgArr])
 
   const currentAns = () => {
     let arr = value.sort(function (a, b) {
@@ -30,20 +30,21 @@ export const ImagePic = ({ imgArr, quiz, trueans }) => {
       return dispatch(trueAnswer(1));
 
     }
-  
+
   };
 
   return (
     <div>
       <div className="quiz-title">
         <h4>{quiz}</h4>
+        {des && <h5>{des}</h5>}
       </div>
-      {arrnew&&<ImagePicker
+      {arrnew && <ImagePicker
         images={arrnew.map((image, i) => ({ src: image, value: i }))}
         onPick={(image) => setValue(image.map((item) => item.value))}
         multiple={true}
       />}
-      <CheckButton currentAns={currentAns} dic={value?false:true} />
+      <CheckButton currentAns={currentAns} dic={value ? false : true} />
     </div>
   );
 };

@@ -31,14 +31,14 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans }) => {
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>
-      <div className="d-flex">
-        <div className="col-7">
+      <div className="d-flex flex-wrap">
+        <div className="col-11 col-lg-7">
           {state && state.map((item, index) => {
             let classes = `list-group-item list-group-item-action`
             return (
-              <div>
+              <div key={index}>
 
-                <a href="#!" className={classes} key={index}><input
+                <button className={classes} key={index}><input
                   key={index}
                   type="text"
                   className="text-center text-uppercase m-1"
@@ -46,13 +46,13 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans }) => {
                   maxlength="1"
                   value={value[index]}
                   onChange={(v) => setValue(value.map((it, ind) => ind === index ? v.target.value : it))}
-                />{item}</a>
+                />{item}</button>
               </div>
             )
           })}
         </div>
-        <div className="col-5 d-flex justify-content-center align-content-center">
-          <img src={img} className="m-5" alt="Responsive" />
+        <div className="col-10 col-lg-5 d-flex justify-content-center align-content-center">
+          <img src={img} style={{width: "100%"}} className="m-5" alt="Responsive" />
         </div>
       </div>
       <CheckButton currentAns={currentAns} />
