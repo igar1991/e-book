@@ -39,15 +39,15 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
                 <h5>{quiz2}</h5>
             </div>
             <div className="d-flex justify-content-center">
-                <div className="col-11">
+                <div className="col-12 col-md-9">
                     {state && state.map((item, index) => {
                         return (
                             <div className="d-flex" key={index}>
                                 <div className="list-group list-group-horizontal">
-                                    <button className={`list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[0] ? "active" : ""}`} onClick={() => handlerPick(arrans[0], index)}>{arrans[0]}</button>
-                                    <button className={`list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[1] ? "active" : ""}`} onClick={() => handlerPick(arrans[1], index)}>{arrans[1]}</button>
+                                    <button className={`fs-5 text-center list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[0] ? "text-white bg-warning" : ""}`} onClick={() => handlerPick(arrans[0], index)}>{arrans[0]}</button>
+                                    <button className={`fs-5 text-center list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[1] ? "text-white bg-warning" : ""}`} onClick={() => handlerPick(arrans[1], index)}>{arrans[1]}</button>
                                 </div>
-                                <div className={`list-group-item list-group-item-action`} key={index}>{item}</div>
+                                <div className={`fs-5 list-group-item list-group-item-action text-center`} key={index}>{item}</div>
                             </div>
                         )
                     })}

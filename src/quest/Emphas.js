@@ -40,7 +40,7 @@ export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
             return (
               <div key={index} className="col-lg-3 col-12 mb-2 mt-2">
                 {!ansImg && <div
-                  className="text-center text-white border border-dark rounded p-2"
+                  className="text-center text-white border border-dark rounded p-1"
                   style={{
                     fontSize: "calc(0.8rem + .7vw)",
                     backgroundColor: `${clr[index]}`,
@@ -48,7 +48,7 @@ export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
                 >
                   {item.q}
                 </div>}
-                {ansImg && <div className="d-flex justify-content-center"><img src={item.q} alt="1" style={{ width: 150, height: 150 }} /></div>}
+                {ansImg && <div className="d-flex justify-content-center"><img src={item.q} alt="1" style={{ width: "100%", objectFit: "contain", maxWidth: 300 }} /></div>}
 
                 <div
                   className="list-group"

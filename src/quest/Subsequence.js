@@ -3,7 +3,7 @@ import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CheckButton } from "../components/checkButton";
 
-export const Subsequence = ({ img, trueans, quiz, ans, arrans }) => {
+export const Subsequence = ({ img, trueans, quiz, ans, arrans, col }) => {
 
   const dispatch = useDispatch();
 
@@ -31,18 +31,17 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans }) => {
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>
-      <div className="d-flex flex-wrap">
-        <div className="col-11 col-lg-7">
+      <div className="d-flex flex-wrap justify-content-center">
+        <div className={`col-${col[0]} col-md-${col[2]}`}>
           {state && state.map((item, index) => {
-            let classes = `list-group-item list-group-item-action`
             return (
               <div key={index}>
 
-                <button className={classes} key={index}><input
+                <button className={`fs-5 list-group-item list-group-item-action`} key={index}><input
                   key={index}
                   type="text"
-                  className="text-center text-uppercase m-1"
-                  style={{ fontSize: "calc(0.4rem + 1vw)", width: "calc(0.3rem + 2.5vw)" }}
+                  className="fs-5 text-center text-uppercase m-1"
+                  style={{ width: "5vw", minWidth: "35px" }}
                   maxlength="1"
                   value={value[index]}
                   onChange={(v) => setValue(value.map((it, ind) => ind === index ? v.target.value : it))}
@@ -51,9 +50,10 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans }) => {
             )
           })}
         </div>
-        <div className="col-10 col-lg-5 d-flex justify-content-center align-content-center">
-          <img src={img} style={{width: "100%"}} className="m-5" alt="Responsive" />
-        </div>
+        {img && <div className={`col-${col[1]} col-md-${col[3]} d-flex justify-content-center p-1`}>
+          <img src={img} style={{ width: "100%" }} alt="Responsive" />
+        </div>}
+
       </div>
       <CheckButton currentAns={currentAns} />
     </div>

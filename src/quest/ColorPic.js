@@ -37,7 +37,7 @@ export const ColorPic = ({arr, trueans, ans, dec }) => {
     <div>
       <div className="quiz-title">
         <h4>{ans}</h4>
-        {dec&&<p>{dec}</p>}
+        {dec&&<h5>{dec}</h5>}
       </div>
       <div className="d-flex flex-row justify-content-center">
         <ul className="list-group col-9 col-sm-6 col-lg-10 col-md-10 me-2">
@@ -46,7 +46,7 @@ export const ColorPic = ({arr, trueans, ans, dec }) => {
               return (
                 <div className="d-flex flex-row justify-content-center" key={index}>
                   <button
-                    className="list-group-item list-group-item-action text-center col-sm-10"
+                    className="fs-5 list-group-item list-group-item-action text-center col-sm-10"
                     style={{ backgroundColor: arrY[index] }}
                     onClick={() => changeColorY(index)}
                   >
