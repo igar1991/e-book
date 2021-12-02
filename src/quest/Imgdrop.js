@@ -18,34 +18,32 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   return result;
 };
 
-const getItemStyle = (isDragging, draggableStyle) => ({
-  userSelect: "none",
-  padding: "0.1rem",
-  borderRadius: "0.25rem",
-  fontSize: "calc(0.5rem + .7vw)",
 
-  // change background colour if dragging
-  background: isDragging ? "#9ec5fe" : "#198754",
-
-  ...draggableStyle,
-});
-
-
-export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h, dec }) => {
+export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  dec, hq }) => {
   const dispatch = useDispatch();
   const getListStyle = (isDraggingOver) => ({
-    background: isDraggingOver ? "lightblue" : "#9ec5fe",
-    width: "20vw",
+    background: isDraggingOver ? "#0dcaf0" : "#ffc107",
     minWidth: "5vw",
-    maxWidth: 200,
+    width: w,
     borderRadius: "0.25rem",
     fontSize: "calc(0.5rem + .7vw)",
     height: h,
     minHeight: "5vw",
-    maxHeight: 200,
     marginLeft: "auto",
     marginRight: "auto",
 
+  });
+  const getItemStyle = (isDragging, draggableStyle) => ({
+    userSelect: "none",
+    padding: "0.1rem",
+    borderRadius: "0.25rem",
+    fontSize: "calc(0.5rem + .7vw)",
+    height: h,
+  
+    // change background colour if dragging
+    background: isDragging ? "#0dcaf0" : "#0d6efd",
+  
+    ...draggableStyle,
   });
   const [state, setState] = useState(null);
 
@@ -101,30 +99,29 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h, dec }
         {dec&&<p>{dec}</p>}
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="d-flex ">
-          {!ansImg && ans?.map((item, index) => <div key={index} className="card text-center bg-success col-lg-4 col-sm-4 col-4 pt-2 pb-2">
+        <div className="d-flex flex-wrap">
+          {state && state?.map((el, i) => <div className={`col-sm-${col} col-6 mb-1`}>
+          {ansImg&&ans[i]&& <div className="d-flex justify-content-center" >
+            <img src={ans[i]} alt="1" style={{ height: hq, objectFit: 'contain' }} />
+          </div>}
+          {!ansImg &&ans[i]&& <div className="card text-center bg-success p-3" style={{ height: hq }}>
             <h4
               class="card-text text-white"
               style={{
                 fontSize: "calc(0.4rem + 1vw)",
               }}
             >
-              {item}
+              {ans[i]}
             </h4>
-          </div>)}
-          {ansImg && ans?.map((item, index) => <div key={index} className="d-flex justify-content-center col-lg-4 col-sm-4 col-4 pt-2" >
-            <img src={item} alt="1" style={{ height: h }} />
-          </div>)}
-        </div>
-        <div className="d-flex flex-wrap">
-          {state && state?.map((el, i) => <div className={i < ans.length ? `col-lg-4 col-sm-4 col-4 mb-1` : `col-${col}`}><Droppable droppableId={`${i}`}>
+          </div>}
+            <Droppable droppableId={`${i}`}>
             {(provided, snapshot) => (
               <div
                 ref={provided.innerRef}
                 style={getListStyle(snapshot.isDraggingOver)}
                 {...provided.droppableProps}
               >
-                {i < ans.length && state[i].map((item, index) => (
+                {state[i]?.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
                     
                     {(provided, snapshot) => (
@@ -137,11 +134,10 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h, dec }
                           provided.draggableProps.style
                         )}
                       >
-                        <div className="text-center d-flex justify-content-center align-items-center" style={{ width: "20vw", height: h, maxWidth: 200, maxHeight: 200 }}>
-                          
-                          {arrImg && <img src={item.content} alt="1" className="img-fluid"  style={{height: h, maxHeight: 200}}/>}
+                        <div className="d-flex justify-content-center align-items-center">
+                          {arrImg && <img src={item.content} alt="1"  style={{height: h, objectFit: 'contain'}}/>}
                           {!arrImg && <h4
-                            className="card-text text-white"
+                            className="card-text text-white text-center pt-2"
                             style={{
                               fontSize: "calc(0.4rem + 1vw)",
                             }}
@@ -152,34 +148,6 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h, dec }
                       </div>
                     )}
                   </Draggable>
-                ))}
-                {i >= ans.length && state[i].map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
-                        )}
-                      >
-                        <div className="d-flex justify-content-center align-items-center" style={{ width: "20vw", height: h, maxWidth: 200, maxHeight: 200 }}>
-                          {arrImg && <img src={item.content} alt="1" className="img-fluid" style={{height: h, maxHeight: 200}} />}
-                          {!arrImg && <h4
-                            className="card-text text-white text-center"
-                            style={{
-                              fontSize: "calc(0.4rem + 1vw)",
-                            }}
-                          >
-                            {item.content}
-                          </h4>}
-                        </div>
-                      </div>
-                    )}
-                  </Draggable>
-                  
                 ))}
                 {provided.placeholder}
               </div>

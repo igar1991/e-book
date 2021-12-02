@@ -57,6 +57,8 @@ code {
   height: auto !important;
   width: 17rem !important;
   max-width: 90vw;
+  object-fit: contain;
+  max-height: 250px;
 }
 .circle-picker {
   width: 100% !important;
