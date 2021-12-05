@@ -36,7 +36,7 @@ export const SelectedWord = ({quiz, trueAns, arrText, arrWord, img}) => {
         <h4>{quiz}</h4>
       </div>
       <div className="text-center m-1">
-        {arrText.map((item, index)=><h5 className="d-inline">{item}{index<arrWord.length&&<Sele arr={arrWord[index]} addValue={addValue} n={index} />}</h5>)}
+        {arrText.map((item, index)=><h3 className="d-inline">{item}{index<arrWord.length&&<Sele arr={arrWord[index]} addValue={addValue} n={index} />}</h3>)}
         {img&&<img src={img} alt="img" style={{width: "100%", maxHeight: 250, objectFit: 'contain'}} />}
       </div>
       

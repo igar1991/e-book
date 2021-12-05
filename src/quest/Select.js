@@ -41,7 +41,7 @@ export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2
     <div>
       <div className="quiz-title">
         <h4>{quiz}</h4>
-        <h5>{quiz2 && quiz2}</h5>
+        <h4>{quiz2 && quiz2}</h4>
         <h4>{quiz3 && quiz3}</h4>
       </div>
       <div className="d-flex flex-wrap justify-content-center">

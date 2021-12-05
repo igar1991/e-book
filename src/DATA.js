@@ -334,7 +334,7 @@ const Zog_book = {
                 "Если нет машин, дойдите до середины проезжей части.",
                 "Оцените ситуацию на дороге и убедитесь, что нет приближающегося транспортного средства и движение будет безопасным."
               ]}
-              col={[11, 11, 3, 8]}
+              col={[11, 11, 7, 5]}
             />,
             <Select
               quiz={
@@ -354,6 +354,7 @@ const Zog_book = {
               ]}
               trueans={[false, false, false, false, true, false, false]}
               addCl={"fw-bold text-white bg-primary"}
+              imgsize="60%"
             />,
             <Select
               quiz={

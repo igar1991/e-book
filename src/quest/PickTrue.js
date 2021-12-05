@@ -36,7 +36,7 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
                 <h4>{quiz}</h4>
             </div>
             <div className="quiz-title">
-                <h5>{quiz2}</h5>
+                <h4>{quiz2}</h4>
             </div>
             <div className="d-flex justify-content-center">
                 <div className="col-12 col-md-9">
