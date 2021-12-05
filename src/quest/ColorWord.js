@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
+import { CheckButton } from "../components/checkButton";
 
 export const ColorWord = () => {
   const dispatch = useDispatch();
@@ -8,7 +9,7 @@ export const ColorWord = () => {
   const quiz =
     "Помни, что соблюдение чистоты тела, белья, одежды и жилища помогут сохранить и укрепить здоровье. Найди в таблице пропущенные слова в каждой пословице. Закрась клеточки с буквами, которые образуют эти слова, соответствующим цветом.(цвета выбирай нажатием левой клавиши мыши в цветных прямоугольниках; чтобы закрасить клетку, нажми в ней левой клавишей мыши)";
 
-  
+
 
   const arrquiz = [
     { word: "Р", cl: "#fff" },
@@ -58,14 +59,14 @@ export const ColorWord = () => {
       if (truearr[i].cl !== arrClass[i].cl) return dispatch(falseAnswer(1));
     }
     return dispatch(trueAnswer(1));
-  
+
   };
 
   const [arrClass, setArrClass] = useState(arrquiz);
 
   const [curColor, setCurColor] = useState("#fff");
 
-  const changeCurr = (color)=>{
+  const changeCurr = (color) => {
     setCurColor(color)
   }
 
@@ -86,69 +87,50 @@ export const ColorWord = () => {
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>
-      <div className="d-flex">
-        <div className="col-5 m-5">
-          <ul className="list-group text-center d-flex flex-row flex-wrap">
-            {arrClass &&
-              arrClass.map((item, index) => {
-                return (
-                  <a
-                    href="#!"
-                    key={index}
-                    className="col-2 list-group-item list-group-item-action font-weight-bolder"
-                    style={{ backgroundColor: item.cl }}
-                    onClick={() => changeBackground(index)}
-                  >
-                    {item.word}
-                  </a>
-                );
-              })}
-          </ul>
-        </div>
-        <div className="col-6">
-          <ul className="list-group d-flex h-75 justify-content-between">
-            <div className="d-flex  text-center" style={{minHeight: 75}}>
-            <a
-              href="#!"
-              className="col-2 list-group-item list-group-item-action m-2"
-              style={{ backgroundColor: "#32adf0"}}
-              onClick={() => changeCurr("#32adf0")}
-            ></a>
-             <h4>У неряхи да непряхи нет и путной ___.</h4>
-             </div>
-             <div className="d-flex  text-center" style={{minHeight: 75}}>
-            <a
-              href="#!"
-              className="col-2 list-group-item list-group-item-action m-2"
-              style={{ backgroundColor: "#f74f5a"}}
-              onClick={() => changeCurr("#f74f5a")}
-            ></a>
-             <h4>___— залог здоровья.</h4>
-             </div>
-             <div className="d-flex  text-center" style={{minHeight: 75}}>
-            <a
-              href="#!"
-              className="col-2 list-group-item list-group-item-action m-2"
-              style={{ backgroundColor: "#18d945"}}
-              onClick={() => changeCurr("#18d945")}
-            ></a>
-             <h4>Гигиена – не мука, гигиена – не скука, а важная ___.</h4>
-             </div>
-            
-           
-            
-          </ul>
+      <div className="d-flex justify-content-center">
+        <div className="d-flex flex-wrap col-sm-4 col-11" style={{ width: 300 }} >
+          {arrClass &&
+            arrClass.map((item, index) => {
+              return (
+                <button
+                  key={index}
+                  className="list-group-item fw-bold"
+                  style={{ backgroundColor: item.cl, width: 50, height: 50 }}
+                  onClick={() => changeBackground(index)}
+                >
+                  {item.word}
+                </button>
+              );
+            })}
         </div>
       </div>
-      <div className="quiz-btn">
-        <button
-          type="button"
-          className="btn btn btn-success btn-block"
-          onClick={currentAns}
-        >
-          Проверить
-        </button>
+      <div className="d-flex flex-column align-items-center">
+        <div className="d-flex align-items-center text-center" style={{ minHeight: 75 }}>
+          <button
+            className="col-2 list-group-item list-group-item-action m-2"
+            style={{ backgroundColor: "#32adf0", width: 50, height: 50 }}
+            onClick={() => changeCurr("#32adf0")}
+          ></button>
+          <h4>У неряхи да непряхи нет и путной ___.</h4>
+        </div>
+        <div className="d-flex align-items-center text-center" style={{ minHeight: 75 }}>
+          <button
+            className="col-2 list-group-item list-group-item-action m-2"
+            style={{ backgroundColor: "#f74f5a", width: 50, height: 50 }}
+            onClick={() => changeCurr("#f74f5a")}
+          ></button>
+          <h4>___— залог здоровья.</h4>
+        </div>
+        <div className="d-flex align-items-center text-center" style={{ minHeight: 75 }}>
+          <button
+            className="col-2 list-group-item list-group-item-action m-2"
+            style={{ backgroundColor: "#18d945", width: 50, height: 50 }}
+            onClick={() => changeCurr("#18d945")}
+          ></button>
+          <h4>Гигиена – не мука, гигиена – не скука, а важная ___.</h4>
+        </div>
       </div>
+      <CheckButton currentAns={currentAns} />
     </div>
   );
 };

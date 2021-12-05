@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { CheckButton } from "../components/checkButton";
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -22,7 +22,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   fontSize: "calc(0.5rem + .7vw)",
 
   // change background colour if dragging
-  background: isDragging ? "#9ec5fe" : "#ffe69c",
+  background: isDragging ? "#0dcaf0" : "#ffc107",
 
   // styles we need to apply on draggables
   ...draggableStyle,
@@ -39,9 +39,6 @@ const getListStyle = (isDraggingOver) => ({
 export const Arrow = ({ quiz, description, ans, trueans }) => {
   const [state, setState] = useState(null);
   const dispatch = useDispatch();
-  const currentQuest = useSelector(
-    (state) => state.solutionReducer.currentQuest
-  );
 
   useEffect(() => {
     setState({ items: description });
@@ -81,7 +78,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
       {state && (
         <div className="d-flex">
           <div className="d-flex flex-column col-lg-6 justify-content-around ">
-            {ans.map((item, index) => (
+            {ans?.map((item, index) => (
               <div
                 key={index}
                 className="text-center text-white border border-dark rounded p-2"
@@ -119,7 +116,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
                               snapshot.isDragging,
                               provided.draggableProps.style
                             )}
-                            className="border border-dark text-center"
+                            className="text-center text-white"
                           >
                             {item}
                           </div>
@@ -134,17 +131,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
           </div>
         </div>
       )}
-      <div className="quiz-btn">
-        {state && (
-          <button
-            type="button"
-            className="btn btn btn-success btn-block"
-            onClick={currentAns}
-          >
-            Проверить
-          </button>
-        )}
-      </div>
+      <CheckButton currentAns={currentAns} />
     </>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
+import { CheckButton } from "../components/checkButton";
 
 
 const move = (source, destination, droppableSource, droppableDestination) => {
@@ -25,12 +26,12 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     fontSize: "calc(0.5rem + .7vw)",
   
     // change background colour if dragging
-    background: isDragging ? "#9ec5fe" : "#ffe69c",
+    background: isDragging ? "#0dcaf0" : "#0d6efd",
 
   ...draggableStyle,
 });
 const getListStyle = (isDraggingOver) => ({
-  background: isDraggingOver ? "lightblue" : "#9ec5fe",
+  background: isDraggingOver ? "#0dcaf0" : "#ffc107",
   padding: 2,
   minWidth: 200,
   borderRadius: "0.25rem",
@@ -216,7 +217,7 @@ export const Dropword = () => {
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
-                        className="border border-dark rounded"
+                        className="rounded"
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         style={getItemStyle(
@@ -247,7 +248,7 @@ export const Dropword = () => {
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
-                        className="border border-dark rounded"
+                        className= "rounded"
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         style={getItemStyle(
@@ -278,7 +279,7 @@ export const Dropword = () => {
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
-                        className="border border-dark rounded"
+                        className="rounded"
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         style={getItemStyle(
@@ -300,17 +301,7 @@ export const Dropword = () => {
           </div>
         </DragDropContext>
       </div>
-      <div className="quiz-btn">
-        {state && (
-          <button
-            type="button"
-            className="btn btn btn-success btn-block"
-            onClick={currentAns}
-          >
-            Проверить
-          </button>
-        )}
-      </div>
+       <CheckButton currentAns={currentAns} />
     </div>
   );
 };
