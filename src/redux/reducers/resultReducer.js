@@ -13,10 +13,7 @@ const initialState = {
   nameStudent: "",
   numberClass: "",
   date: "",
-  solvet: 0,
-  error: 0,
-  miss: 0,
-  res: "Хороший результат!",
+  miss: {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0},
   modalName: false,
   allResult: [],
 };
@@ -41,7 +38,7 @@ export const resultReducer = (state = initialState, { payload, type }) => {
     case SOLVET:
       return {
         ...state,
-        solvet: ++state.solvet
+        miss: {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0},
       };
     case ERROR:
       return {
@@ -49,9 +46,11 @@ export const resultReducer = (state = initialState, { payload, type }) => {
         error: ++state.error
       };
     case MISS:
+      let arr = state.miss
+      arr[payload] = ++arr[payload]
       return {
         ...state,
-        miss: ++state.miss
+        miss: {...arr} 
       };
     case ADD_ALL_RESULT:
       return {
@@ -60,10 +59,7 @@ export const resultReducer = (state = initialState, { payload, type }) => {
         nameStudent: "",
         numberClass: "",
         date: "",
-        solvet: 0,
-        error: 0,
-        miss: 0,
-        res: "Хороший результат!",
+        miss: {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0},
         modalName: false,
         allResult: [
           {
@@ -72,10 +68,7 @@ export const resultReducer = (state = initialState, { payload, type }) => {
             nameStudent: state.nameStudent,
             numberClas: state.numberClass,
             date: state.date,
-            solvet: state.solvet,
-            error: state.error,
             miss: state.miss,
-            res: state.res,
             modalName: false,
           },
           ...state.allResult,

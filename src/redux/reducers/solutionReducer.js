@@ -9,9 +9,10 @@ import {
 const initialState = {
   allquests: null,
   currentQuest: 0,
+  currentMiss: 0,
   modalFalse: false,
   modalTrue: false,
-  modalAdd: false
+  modalAdd: false,
 };
 
 export const solutionReducer = (state=initialState, action) => {

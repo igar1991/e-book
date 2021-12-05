@@ -100,7 +100,7 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  de
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="d-flex flex-wrap">
-          {state && state?.map((el, i) => <div className={`col-sm-${col} col-6 mb-1`}>
+          {state && state?.map((el, i) => <div key={i} className={`col-sm-${col} col-6 mb-1`}>
           {ansImg&&ans[i]&& <div className="d-flex justify-content-center" >
             <img src={ans[i]} alt="1" style={{ height: hq, objectFit: 'contain' }} />
           </div>}

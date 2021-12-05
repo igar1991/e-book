@@ -12,8 +12,6 @@ export const Rebus = ({ quiz, img, trueans, quiz2,img2, des }) => {
    
     let i = trueans.length;
     const arr= Array.from(trueans)
-    console.log(arr);
-    console.log(value)
     while (i--) {
       if (arr[i].toUpperCase() !== value[i].toUpperCase()) return dispatch(falseAnswer(1));
     }
@@ -41,7 +39,7 @@ export const Rebus = ({ quiz, img, trueans, quiz2,img2, des }) => {
                 type="text"
                 className="text-center text-uppercase m-1"
                 style={{ fontSize: "calc(1rem + 2vw)", width: "calc(1rem + 3.5vw)" }}
-                maxlength="1"
+                maxLength="1"
                 value={value[index]}
                 onChange={(v)=>setValue(value.map((it,ind)=>ind===index? v.target.value : it))}
               />

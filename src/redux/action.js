@@ -70,12 +70,13 @@ export const addTheme=(item)=>({
 export const clearTheme =()=> ({
     type: CLEAR_THEME
   })
-export const addSolvet =()=>({
+export const clearMiss =()=>({
   type: SOLVET
 })
 export const addError =()=>({
   type: ERROR
 })
-export const addMiss =()=>({
-  type: MISS
+export const addMiss =(id)=>({
+  type: MISS,
+  payload: id
 })

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { falseAnswer, nextQuest, trueAnswer, addStartdata, addAllResult, addSolvet, addError, addMiss } from "../redux/action"
+import { falseAnswer, nextQuest, trueAnswer, addStartdata, addAllResult, clearMiss, addError, addMiss } from "../redux/action"
 import { useDispatch } from "react-redux";
 
 export const Solution = () => {
@@ -15,57 +15,56 @@ export const Solution = () => {
 
   const [name, setName] = useState('')
   const [numberClass, setNumberClass] = useState('')
-  const [curErr, setCurErr] = useState(0)
 
   const book = useSelector(state => state.bookReducer)
   const stateR = useSelector(state => state.resultReducer)
-  const themeTitle = useSelector(state => state.themeReducer.title)
-  const bg = useSelector(state => state.themeReducer.bg)
+  const themeTitle = useSelector(state => state.themeReducer?.title)
+  const bg = useSelector(state => state.themeReducer?.bg)
 
 
   let his = useHistory()
 
   const answerTrue = () => {
     if (allQuests.quests.length <= currentQuest + 1) {
-      dispatch(addSolvet())
-      dispatch(trueAnswer(1));
+      dispatch(trueAnswer());
       dispatch(addAllResult());
       his.push("/result")
     } else {
-      dispatch(addSolvet())
-      dispatch(trueAnswer(1));
-      dispatch(nextQuest(1));
+      dispatch(trueAnswer());
+      dispatch(nextQuest());
     }
   };
 
   const addfalseAnswer = () => {
     dispatch(addError())
-    dispatch(falseAnswer(1))
-    setCurErr(1 + curErr)
+    dispatch(falseAnswer())
+    dispatch(addMiss(currentQuest))
+    console.log(stateR.miss)
   }
 
+  
   const addMiss_ = () => {
     if (allQuests.quests.length <= currentQuest + 1) {
-      dispatch(addMiss())
-      dispatch(falseAnswer(1))
+      dispatch(addMiss(currentQuest))
+      dispatch(falseAnswer())
       dispatch(addAllResult());
       his.push("/result")
 
     } else {
-      dispatch(nextQuest(1));
-      dispatch(addMiss())
-      dispatch(falseAnswer(1))
-      setCurErr(0)
+      dispatch(nextQuest());
+      dispatch(addMiss(currentQuest))
+      dispatch(falseAnswer())
+      console.log(stateR.miss)
     }
 
   }
   return (
     <div className="book p-2"  style={{ backgroundImage: `url(${bg})` }}>
       {allQuests && <><div className="d-flex justify-content-around p-1">
-        <h2>{themeTitle}</h2>
+        <h2>{themeTitle&&themeTitle}</h2>
       </div>
         <div className="d-flex justify-content-around p-1">
-          <h4>{allQuests.title}</h4>
+          <h4>{allQuests?.title}</h4>
         </div>
         <hr />
         <button onClick={()=>dispatch(trueAnswer(1))}>NEXT</button>
@@ -83,8 +82,8 @@ export const Solution = () => {
                   >
                     <h4 className="text-center">{index + 1}</h4>
                   </div>
-                ) : (
-                  <svg
+                ) : 
+                stateR.miss[index] ===0?<svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="35"
                     height="35"
@@ -94,8 +93,18 @@ export const Solution = () => {
                   >
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                     <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                  </svg>: <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    fill={stateR.miss[index]===3?"red":"yellow"}
+                    className="bi bi-check-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
                   </svg>
-                )}
+                }
               </div>
             );
           })}
@@ -111,7 +120,7 @@ export const Solution = () => {
           aria-labelledby="contained-modal-title-vcenter"
         >
           <Modal.Header className="bg-success text-light">
-            <Modal.Title>Молодец! Ответил верно!.😀</Modal.Title>
+            <Modal.Title>Молодец! Ответил верно!😀</Modal.Title>
           </Modal.Header>
           <Modal.Body className="d-flex justify-content-center">
             {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Вы прошли урок Урок №{currentQuest + 1}</h2> : <h2>Молодец! Так держать!</h2>}
@@ -145,17 +154,17 @@ export const Solution = () => {
             <Modal.Title>Неверно! 😔</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h2>Не огорчайся! Попробуй еще раз!</h2>
+            <h2>{stateR.miss[currentQuest] >=2 ?"Не огорчайся! Давай перейдем к следующему заданию.":"Попробуй еще раз! Не огорчайся!"}</h2>
           </Modal.Body>
           <Modal.Footer>
-            <button
+          {stateR.miss[currentQuest] < 2 && <button
               type="button"
               className="btn btn-danger btn-block"
               onClick={addfalseAnswer}
             >
               Закрыть
-          </button>
-            {curErr > 2 && <button
+          </button>}
+            {stateR.miss[currentQuest] >=2 && <button
               type="button"
               className="btn btn-warning btn-block"
               onClick={addMiss_}
@@ -211,6 +220,7 @@ export const Solution = () => {
               className="btn btn-success btn-block"
               onClick={() => {
                 dispatch(addStartdata(name, numberClass, book.title, allQuests.title))
+                dispatch(clearMiss())
               }}
             >
               Начать
