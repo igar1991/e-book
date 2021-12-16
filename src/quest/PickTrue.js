@@ -31,12 +31,10 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
 
 
     return (
-        <div>
+        <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
             <div className="quiz-title">
                 <h4>{quiz}</h4>
-            </div>
-            <div className="quiz-title">
-                <h4>{quiz2}</h4>
+                {quiz2&&<h4>{quiz2}</h4>}
             </div>
             <div className="d-flex justify-content-center">
                 <div className="col-12 col-md-9">
@@ -53,7 +51,9 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
                     })}
                 </div>
             </div>
+            <div>
             <CheckButton currentAns={currentAns} />
+            </div>
         </div>
     );
 };

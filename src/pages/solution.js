@@ -59,7 +59,7 @@ export const Solution = () => {
 
   }
   return (
-    <div className="book p-2"  style={{ backgroundImage: `url(${bg})` }}>
+    <div className="book p-2"  style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover' }}>
       {allQuests && <><div className="d-flex justify-content-around p-1">
         <h2>{themeTitle&&themeTitle}</h2>
       </div>
@@ -67,7 +67,7 @@ export const Solution = () => {
           <h4>{allQuests?.title}</h4>
         </div>
         <hr />
-        {/* <button onClick={()=>dispatch(trueAnswer(1))}>NEXT</button> */}
+        <button onClick={()=>dispatch(trueAnswer(1))}>NEXT</button>
         <div className="d-flex flex-wrap flex-row justify-content-center m-3">
           {allQuests.quests.map((item, index) => {
             return (
@@ -110,7 +110,7 @@ export const Solution = () => {
           })}
         </div>
         <hr />
-        <div>{allQuests.quests[currentQuest]}</div>
+        <div style={{minHeight: '95vh'}}>{allQuests.quests[currentQuest]}</div>
         <Modal
           size="md"
           show={modalTrue}
@@ -123,7 +123,7 @@ export const Solution = () => {
             <Modal.Title>Молодец! Ответил верно!😀</Modal.Title>
           </Modal.Header>
           <Modal.Body className="d-flex justify-content-center">
-            {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Вы прошли урок Урок №{currentQuest + 1}</h2> : <h2>Молодец! Так держать!</h2>}
+            {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Вы прошли урок №{currentQuest + 1}</h2> : <h2>Молодец! Так держать!</h2>}
           </Modal.Body>
           <Modal.Footer>
             {(allQuests.quests.length <= currentQuest + 1) ? <button
@@ -154,7 +154,7 @@ export const Solution = () => {
             <Modal.Title>Неверно! 😔</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h2>{stateR.miss[currentQuest] >=2 ?"Не огорчайся! Давай перейдем к следующему заданию.":"Попробуй еще раз! Не огорчайся!"}</h2>
+            <h2>{stateR.miss[currentQuest] >=2 ?"Не огорчайся! Давай перейдём к следующему заданию.":"Попробуй ещё раз! Не огорчайся!"}</h2>
           </Modal.Body>
           <Modal.Footer>
           {stateR.miss[currentQuest] < 2 && <button

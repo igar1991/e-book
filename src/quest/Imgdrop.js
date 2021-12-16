@@ -19,12 +19,13 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 };
 
 
-export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  dec, hq }) => {
+export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  dec, hq, col2 }) => {
   const dispatch = useDispatch();
   const getListStyle = (isDraggingOver) => ({
     background: isDraggingOver ? "#0dcaf0" : "#ffc107",
     minWidth: "5vw",
     width: w,
+    opacity: isDraggingOver ? 0.33 : 1,
     borderRadius: "0.25rem",
     fontSize: "calc(0.5rem + .7vw)",
     height: h,
@@ -93,14 +94,14 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  de
   };
 
   return (
-    <div>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}} >
       <div className="quiz-title">
         <h4>{quiz}</h4>
-        {dec&&<p>{dec}</p>}
+        {dec&&<h4>{dec}</h4>}
       </div>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="d-flex flex-wrap">
-          {state && state?.map((el, i) => <div key={i} className={`col-sm-${col} col-6 mb-1`}>
+          {state && state?.map((el, i) => <div key={i} className={`col-sm-${i<ans.length? col: col2} col-6 mb-1 p-1`}>
           {ansImg&&ans[i]&& <div className="d-flex justify-content-center" >
             <img src={ans[i]} alt="1" style={{ height: hq, objectFit: 'contain' }} />
           </div>}
@@ -155,7 +156,9 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  de
           </Droppable></div>)}
         </div>
       </DragDropContext>
+      <div>
       <CheckButton currentAns={currentAns} />
+      </div>
     </div>
   );
 };

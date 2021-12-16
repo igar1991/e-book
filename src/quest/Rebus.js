@@ -19,18 +19,18 @@ export const Rebus = ({ quiz, img, trueans, quiz2,img2, des }) => {
   };
 
   return (
-    <div>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
         {quiz2&&<h4>{quiz2}</h4>}
       </div>
       {img2&&      <div className="d-flex flex-wrap justify-content-center text-center">
-        <h5 className="col-sm-12 col-lg-7">{des}</h5>
+        <h4 className="col-sm-12 col-lg-7">{des}</h4>
         {img2&&<img src={img2} className="img-fluid col-sm-12 col-lg-5" alt="rebus" style={{maxHeight: 100, objectFit: "contain"}} />}
       </div>}
-      <div className="d-flex justify-content-center">
-        {img&&<img src={img} className="img-fluid col-sm-11 col-lg-8" alt="rebus" style={{maxHeight: 300, objectFit: "contain"}} />}
-      </div>
+      {img&&<div className="d-flex justify-content-center">
+        <img src={img} className="img-fluid col-sm-11 col-lg-8" alt="rebus" style={{maxHeight: 300, objectFit: "contain"}} />
+      </div>}
       <div className="d-flex justify-content-center">
           {trueans&&trueans.split("").map((item, index)=>{
               return (
@@ -48,7 +48,9 @@ export const Rebus = ({ quiz, img, trueans, quiz2,img2, des }) => {
           })}
 
       </div>
+      <div>
       <CheckButton currentAns={currentAns} />
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CheckButton } from "../components/checkButton";
 
-export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
+export const Emphas = ({ quiz, ans, trueans, ansImg, quiz2, imgsize }) => {
 
   const [value, setValue] = useState({});
 
@@ -30,9 +30,10 @@ export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
   };
 
   return (
-    <>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
+        {quiz2&&<h4>{quiz2}</h4>}
       </div>
       <div className="d-flex flex-lg-row flex-column  justify-content-lg-around">
         {ans &&
@@ -48,7 +49,7 @@ export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
                 >
                   {item.q}
                 </div>}
-                {ansImg && <div className="d-flex justify-content-center"><img src={item.q} alt="1" style={{ width: "100%", objectFit: "contain", maxWidth: 300 }} /></div>}
+                {ansImg && <div className="d-flex justify-content-center"><img src={item.q} alt="1" style={{ width: imgsize?imgsize:"100%", objectFit: "contain", maxWidth: 300 }} /></div>}
 
                 <div
                   className="list-group"
@@ -70,7 +71,9 @@ export const Emphas = ({ quiz, ans, trueans, ansImg }) => {
             );
           })}
       </div>
+      <div>
       <CheckButton currentAns={currentAns} />
-    </>
+      </div>
+    </div>
   );
 };

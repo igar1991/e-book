@@ -43,6 +43,13 @@ code {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+ 
+}
+
+.image_picker img {
+  padding: 2px;
+  width: 300px !important;
+  object-fit: contain !important;
 }
 
 .quiz-btn {
@@ -52,12 +59,15 @@ code {
 .perek {
   text-decoration: line-through !important;
 }
+
+.podperek {
+  text-decoration: underline !important;
+
+}
 .thumbnail {
   height: auto !important;
-  width: 17rem !important;
   max-width: 90vw;
-  object-fit: contain;
-  max-height: 250px;
+  max-height: 230px;
 }
 .circle-picker {
   width: 100% !important;

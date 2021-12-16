@@ -34,17 +34,19 @@ export const ImagePic = ({ imgArr, quiz, trueans, des }) => {
   };
 
   return (
-    <div>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
-        {des && <h5>{des}</h5>}
+        {des && <h4>{des}</h4>}
       </div>
       {arrnew && <ImagePicker
         images={arrnew.map((image, i) => ({ src: image, value: i }))}
         onPick={(image) => setValue(image.map((item) => item.value))}
         multiple={true}
       />}
+      <div>
       <CheckButton currentAns={currentAns} dic={value ? false : true} />
+      </div>
     </div>
   );
 };
