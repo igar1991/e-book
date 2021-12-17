@@ -67,7 +67,7 @@ export const Solution = () => {
           <h4>{allQuests?.title}</h4>
         </div>
         <hr />
-        <button onClick={()=>dispatch(trueAnswer(1))}>NEXT</button>
+        {/* <button onClick={()=>dispatch(trueAnswer(1))}>NEXT</button> */}
         <div className="d-flex flex-wrap flex-row justify-content-center m-3">
           {allQuests.quests.map((item, index) => {
             return (
