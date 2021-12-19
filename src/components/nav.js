@@ -15,7 +15,7 @@ export const Navbar = () => {
             className="btn btn btn-outline-primary m-2 btn-lg"
             type="button"
           >
-            Электронные тетради
+            Электронная тетрадь
           </button>
         </NavLink>
         <NavLink to="/result">

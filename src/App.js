@@ -11,7 +11,6 @@ import { store } from "./redux/store";
 function App() {
   return (
     <Provider store={store}>
-
       <BrowserRouter>
         <div className="container-fluid">
           <Navbar />

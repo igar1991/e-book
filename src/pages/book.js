@@ -16,7 +16,7 @@ export const Book = () => {
     <div className="row justify-content-around">
       <div className="col-lg-8 book" style={{ minHeight: "500px" }}>
         <div className="d-flex justify-content-around p-2">
-          <h2>Наши тетради</h2>
+          <h2>Рабочая электронная тетрадь по безопасности для детей (2-4 класс)</h2>
         </div>
         <div className="row justify-content-around">
           {DATA.map((item) => {
@@ -34,7 +34,7 @@ export const Book = () => {
                 <div className="card-body">
                   <h4 className="card-title">{item.title}</h4>
                   <h5 className="card-title">{item.class}</h5>
-                  <p className="card-text">{`${item.theme.length} раздела и 60 тем`}</p>
+                  <p className="card-text">{`20 тем, 200 заданий`}</p>
                   <NavLink to="menu">
                     <button
                       className="btn btn-primary"

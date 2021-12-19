@@ -16,13 +16,14 @@ export const Menu = () => {
     dispatch(clearQuest())
     his.push("/solution")
     dispatch(addQuest(item))
+    console.log(item)
     dispatch(openModalName())
   }
 
   return (
     <div className="book">
       <div className="d-flex justify-content-around p-2">
-        <h2>{book && book.title}</h2>
+        <h2>Рабочая электронная тетрадь по безопасности для детей (2-4 класс)</h2>
       </div>
       <div className="m-2 row justify-content-center">
         <div className="list-group col-lg-5 mb-2">
@@ -34,7 +35,7 @@ export const Menu = () => {
                 className="list-group-item list-group-item-primary list-group-item-action"
                 onClick={() => dispatch(addTheme(item))}
               >
-                {item.title}
+                {item.title==='ЗОЖ'?"БОНУС! 2 темы ЗОЖ":item.title}
               </button>
             )
           })}

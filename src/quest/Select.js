@@ -55,7 +55,7 @@ export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2
       </div>
       <div className="d-flex flex-wrap justify-content-start ps-3" style={{minHeight: '50vh'}}>
         <div className={`d-flex flex-column justify-content-between ${img&&`col-lg-${gor?'2':'7'}`} col-sm-${gor?'2':'11'} col-${gor?'2':'11'} p-2 align-content-stretch`}>
-        {newquiz1 && <h4>{newquiz1}</h4>}
+        {newquiz1 && <h4 className="fw-bold">{newquiz1}</h4>}
           {state && state.filter((item, i) => i < ans.length).map((item, index) => {
             return (
               <h4 role="button" className={`text-start ${item.b&&addCl}`} key={index} onClick={() => changeClass(item.id)}>{item.q}</h4>
@@ -67,7 +67,7 @@ export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2
         </div>}
         <div className={`${img&&`col-lg-${gor?'2':'11'}`} col-sm-${gor?'2':'11'} col-${gor?'2':'11'}`}>
 
-        {newquiz2 && <h4>{newquiz2}</h4>}
+        {newquiz2 && <h4 className="fw-bold">{newquiz2}</h4>}
         {state && state.filter((item, i) => i >= ans.length).map((item, index) => {
           return (
             <h4 role="button" className={` ${item.b&&addCl}`} key={index} onClick={() => changeClass(item.id)}>{item.q}</h4>
