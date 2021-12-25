@@ -81,6 +81,7 @@ export const ColorPic = ({arr, trueans, ans, dec }) => {
         <CirclePicker
           className="flex-column "
           circleSize={46}
+          no-title
           colors={[
             "#32adf0",
             "#f74f5a",

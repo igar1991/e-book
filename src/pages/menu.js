@@ -32,7 +32,7 @@ export const Menu = () => {
               <button
                 key={index}
                 type="button"
-                className="list-group-item list-group-item-primary list-group-item-action"
+                className="list-group-item list-group-item-primary list-group-item-action fs-3"
                 onClick={() => dispatch(addTheme(item))}
               >
                 {item.title==='ЗОЖ'?"БОНУС! 2 темы ЗОЖ":item.title}

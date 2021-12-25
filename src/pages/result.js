@@ -36,12 +36,12 @@ export const Result = () => {
               <h4>{item.nameStudent}</h4>
               <h5>{item.date}</h5>
               <hr />
-              <h4 className="text-success">{`Выполнено с 1 попытки: ${truans.length} заданий(№ ${truans.map((item)=>` ${++item}`)})`}</h4>
-              <h4 className="text-warning">{`Выполнено со 2 попытки: ${mistake1.length} заданий(№ ${mistake1.map((item)=>` ${++item}`)})`}</h4>
-              <h4 className="text-warning">{`Выполнено с 3 попытки: ${mistake2.length} заданий(№ ${mistake2.map((item)=>` ${++item}`)})`}</h4>
-              <h4 className="text-danger">{`Не выполнено: ${err.length} заданий(№ ${err.map((item)=>` ${++item}`)})`}</h4>
+              {truans.length>0&&<h4 className="text-success">{`Выполнено с 1 попытки: ${truans.length} заданий (№ ${truans.map((item)=>` ${++item}`)})`}</h4>}
+              {mistake1.length>0&&<h4 className="text-warning">{`Выполнено со 2 попытки: ${mistake1.length} заданий (№ ${mistake1.map((item)=>` ${++item}`)})`}</h4>}
+              {mistake2.length>0&&<h4 className="text-warning">{`Выполнено с 3 попытки: ${mistake2.length} заданий (№ ${mistake2.map((item)=>` ${++item}`)})`}</h4>}
+              {err.length>0&&<h4 className="text-danger">{`Не выполнено: ${err.length} заданий(№ ${err.map((item)=>` ${++item}`)})`}</h4>}
               <hr />
-              <h3 className="text-primary">{`Результат: ${truans.length*10+mistake1.length*5+mistake2.length*2.5} баллов из 100`}</h3>
+              <h3 className="text-primary">{`Результат: ${Math.ceil(truans.length*10+mistake1.length*5+mistake2.length*2.5)} баллов из 100`}</h3>
             </div>
           )
         })}

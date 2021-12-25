@@ -37,6 +37,7 @@ const getListStyle = (isDraggingOver) => ({
   borderRadius: "0.25rem",
   fontSize: "calc(0.5rem + .7vw)",
   minHeight: 50,
+  maxHeight: 65,
   margin: 2,
 });
 
@@ -49,7 +50,7 @@ export const Dropword = () => {
     [],
     [],
     [{ id: "1", content: "многое потерял" }],
-    [{ id: "2", content: "все потерял" }],
+    [{ id: "2", content: "всё потерял" }],
     [{ id: "3", content: "ничего не потерял" }],
   ]);
 
@@ -102,6 +103,7 @@ export const Dropword = () => {
 
   return (
     <div>
+      <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
       <div className="quiz-title">
         <h4>
           Заполни пропуски в данной пословице. (зажимай ответы левой клавишей
@@ -130,7 +132,7 @@ export const Dropword = () => {
                           provided.draggableProps.style
                         )}
                       >
-                        <div className="text-center" >
+                        <div className="text-center text-white" >
                           <h4>{item.content}</h4>
                         </div>
                       </div>
@@ -161,7 +163,7 @@ export const Dropword = () => {
                           provided.draggableProps.style
                         )}
                       >
-                        <div className="text-center">
+                        <div className="text-center text-white">
                           <h4>{item.content}</h4>
                         </div>
                       </div>
@@ -192,7 +194,7 @@ export const Dropword = () => {
                           provided.draggableProps.style
                         )}
                       >
-                        <div className="text-center">
+                        <div className="text-center text-white">
                           <h4>{item.content}</h4>
                         </div>
                       </div>
@@ -225,7 +227,7 @@ export const Dropword = () => {
                           provided.draggableProps.style
                         )}
                       >
-                        <div className="text-center">
+                        <div className="text-center text-white">
                           <h4>{item.content}</h4>
                         </div>
                       </div>
@@ -256,7 +258,7 @@ export const Dropword = () => {
                           provided.draggableProps.style
                         )}
                       >
-                        <div className="text-center">
+                        <div className="text-center text-white">
                           <h4>{item.content}</h4>
                         </div>
                       </div>
@@ -287,7 +289,7 @@ export const Dropword = () => {
                           provided.draggableProps.style
                         )}
                       >
-                        <div className="text-center">
+                        <div className="text-center text-white">
                           <h4>{item.content}</h4>
                         </div>
                       </div>
@@ -302,6 +304,7 @@ export const Dropword = () => {
         </DragDropContext>
       </div>
        <CheckButton currentAns={currentAns} />
+       </div>
     </div>
   );
 };

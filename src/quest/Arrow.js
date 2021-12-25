@@ -72,12 +72,13 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
 
   return (
     <>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>
       {state && (
         <div className="d-flex">
-          <div className="d-flex flex-column col-lg-6 justify-content-around ">
+          <div className="d-flex flex-column col-lg-4 justify-content-around ">
             {ans?.map((item, index) => (
               <div
                 key={index}
@@ -92,7 +93,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
             ))}
           </div>
 
-          <div className="col-lg-6">
+          <div className="col-lg-8">
             <DragDropContext onDragEnd={(res) => onDragEnd(res)}>
               <Droppable droppableId="droppable">
                 {(provided, snapshot) => (
@@ -132,6 +133,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
         </div>
       )}
       <CheckButton currentAns={currentAns} />
+      </div>
     </>
   );
 };
