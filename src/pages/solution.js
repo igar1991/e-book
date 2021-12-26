@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { falseAnswer, nextQuest, trueAnswer, addStartdata, addAllResult, clearMiss, addError, addMiss } from "../redux/action"
 import { useDispatch } from "react-redux";
 
+
 export const Solution = () => {
 
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ export const Solution = () => {
           <h4>{allQuests?.title}</h4>
         </div>
         <hr />
-        {/* <button onClick={() => dispatch(trueAnswer(1))}>NEXT</button> */}
+        <button onClick={()=>dispatch(trueAnswer())}>NEXT</button>
         <div className="d-flex flex-wrap flex-row justify-content-center m-3">
           {allQuests.quests.map((item, index) => {
             return (

@@ -21,7 +21,7 @@ export const Menu = () => {
   }
 
   return (
-    <div className="book">
+    <div className="book"  style={{minHeight: '85vh'}}>
       <div className="d-flex justify-content-around p-2">
         <h2>Рабочая электронная тетрадь по безопасности для детей (2-4 класс)</h2>
       </div>

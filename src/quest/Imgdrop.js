@@ -107,7 +107,7 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  de
           </div>}
           {!ansImg &&ans[i]&& <div className="card text-center bg-success p-3" style={{ height: hq }}>
             <h4
-              class="card-text text-white"
+              className="card-text text-white"
               style={{
                 fontSize: "calc(0.4rem + 1vw)",
               }}

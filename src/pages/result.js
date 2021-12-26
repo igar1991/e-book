@@ -1,9 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+const store = require('store')
+
 
 export const Result = () => {
 
-  const allResult = useSelector(state => state.resultReducer.allResult)
+  const allResult = store.get('resultBook')
 
   return (
     <div className="book" style={{ minHeight: "40rem" }}>

@@ -6,6 +6,7 @@ import {
   ERROR,
   MISS,
 } from "../actionTypes";
+const store = require('store')
 
 const initialState = {
   titleBook: "",
@@ -15,7 +16,6 @@ const initialState = {
   date: "",
   miss: {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0},
   modalName: false,
-  allResult: [],
 };
 
 export const resultReducer = (state = initialState, { payload, type }) => {
@@ -53,6 +53,25 @@ export const resultReducer = (state = initialState, { payload, type }) => {
         miss: {...arr} 
       };
     case ADD_ALL_RESULT:
+      if(store.get('resultBook')) {
+        store.set('resultBook', [{
+          titleBook: state.titleBook,
+          titleClass: state.titleClass,
+          nameStudent: state.nameStudent,
+          numberClas: state.numberClass,
+          date: state.date,
+          miss: state.miss,
+        }, ...store.get('resultBook')])
+      } else {
+        store.set('resultBook',[{
+          titleBook: state.titleBook,
+          titleClass: state.titleClass,
+          nameStudent: state.nameStudent,
+          numberClas: state.numberClass,
+          date: state.date,
+          miss: state.miss,
+        }])
+      }
       return {
         titleBook: "",
         titleClass: "",
@@ -61,19 +80,6 @@ export const resultReducer = (state = initialState, { payload, type }) => {
         date: "",
         miss: {0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0},
         modalName: false,
-        allResult: [
-          {
-            titleBook: state.titleBook,
-            titleClass: state.titleClass,
-            nameStudent: state.nameStudent,
-            numberClas: state.numberClass,
-            date: state.date,
-            miss: state.miss,
-            modalName: false,
-          },
-          ...state.allResult,
-
-        ],
       };
     default:
       return state;
