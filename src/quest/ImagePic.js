@@ -34,7 +34,7 @@ export const ImagePic = ({ imgArr, quiz, trueans, des }) => {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
         {des && <h4>{des}</h4>}
@@ -44,7 +44,7 @@ export const ImagePic = ({ imgArr, quiz, trueans, des }) => {
         onPick={(image) => setValue(image.map((item) => item.value))}
         multiple={true}
       />}
-      <div>
+      <div className="mt-3">
       <CheckButton currentAns={currentAns} dic={value ? false : true} />
       </div>
     </div>

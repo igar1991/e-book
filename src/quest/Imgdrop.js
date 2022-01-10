@@ -22,7 +22,8 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  dec, hq, col2 }) => {
   const dispatch = useDispatch();
   const getListStyle = (isDraggingOver) => ({
-    background: isDraggingOver ? "#0dcaf0" : "#ffc107",
+    background: ansImg ?(isDraggingOver ? "#0dcaf0" : "#ffc107"):'',
+    border: `1px solid black`,
     minWidth: "5vw",
     width: w,
     opacity: isDraggingOver ? 0.33 : 1,
@@ -42,7 +43,7 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  de
     height: h,
   
     // change background colour if dragging
-    background: isDragging ? "#0dcaf0" : "#0d6efd",
+    background: ansImg ? (isDragging ? "#0dcaf0" : "#0d6efd"):'',
   
     ...draggableStyle,
   });
@@ -94,7 +95,7 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  de
   };
 
   return (
-    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}} >
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}} >
       <div className="quiz-title">
         <h4>{quiz}</h4>
         {dec&&<h4>{dec}</h4>}

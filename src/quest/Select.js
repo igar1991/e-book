@@ -47,30 +47,30 @@ export const Select = ({ img, addCl, quiz, ans, quiz2, quiz3, newquiz1, newquiz2
   }
 
   return (
-    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
+    <div className="d-flex flex-column" style={{minHeight: '50vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
         <h4>{quiz2 && quiz2}</h4>
         <h4>{quiz3 && quiz3}</h4>
       </div>
-      <div className="d-flex flex-wrap justify-content-start ps-3" style={{minHeight: '50vh'}}>
-        <div className={`d-flex flex-column justify-content-between ${img&&`col-lg-${gor?'2':'7'}`} col-sm-${gor?'2':'11'} col-${gor?'2':'11'} p-2 align-content-stretch`}>
+      <div className="d-flex flex-wrap justify-content-start ps-3">
+        <div className={`d-flex flex-column ${img&&`col-lg-${gor?'2':'7'}`} col-sm-${gor?'2':'11'} col-${gor?'2':'11'}`}>
         {newquiz1 && <h4 className="fw-bold">{newquiz1}</h4>}
           {state && state.filter((item, i) => i < ans.length).map((item, index) => {
             return (
-              <h4 role="button" className={`text-start ${item.b&&addCl}`} key={index} onClick={() => changeClass(item.id)}>{item.q}</h4>
+              <h4 role="button" className={`text-start mb-3 ${item.b&&addCl}`} key={index} onClick={() => changeClass(item.id)}>• {item.q}</h4>
             )
           })}
         </div>
         {img && <div className={`col-lg-${gor?'9':'5'} col-sm-${gor?'9':'11'} col-${gor?'9':'11'} d-flex justify-content-center align-content-center`}>
           <img src={img} alt="Responsive" style={{ width: imgsize?imgsize: '90%', maxWidth: gor?"70vw":"90vw", objectFit: 'contain'}} />
         </div>}
-        <div className={`${img&&`col-lg-${gor?'2':'11'}`} col-sm-${gor?'2':'11'} col-${gor?'2':'11'}`}>
+        <div className={`${img&&`col-lg-${gor?'2':'11'}`} col-sm-${gor?'2':'11'} col-${gor?'2':'11'} mt-3`}>
 
         {newquiz2 && <h4 className="fw-bold">{newquiz2}</h4>}
         {state && state.filter((item, i) => i >= ans.length).map((item, index) => {
           return (
-            <h4 role="button" className={` ${item.b&&addCl}`} key={index} onClick={() => changeClass(item.id)}>{item.q}</h4>
+            <h4 role="button" className={` ${item.b&&addCl} mb-3`} key={index} onClick={() => changeClass(item.id)}>• {item.q}</h4>
           )
         })}
         </div>

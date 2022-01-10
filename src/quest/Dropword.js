@@ -103,7 +103,7 @@ export const Dropword = () => {
 
   return (
     <div>
-      <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
+      <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
       <div className="quiz-title">
         <h4>
           Заполни пропуски в данной пословице. (зажимай ответы левой клавишей

@@ -72,7 +72,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
 
   return (
     <>
-    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>

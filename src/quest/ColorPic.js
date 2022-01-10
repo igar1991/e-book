@@ -44,7 +44,7 @@ export const ColorPic = ({arr, trueans, ans, dec }) => {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
       <div className="quiz-title">
         <h4>{ans}</h4>
         {dec&&<h4>{dec}</h4>}
@@ -54,9 +54,9 @@ export const ColorPic = ({arr, trueans, ans, dec }) => {
           {arrY &&
             arr.map((item, index) => {
               return (
-                <div className="d-flex flex-row justify-content-center" key={index}>
+                <div className="d-flex flex-row justify-content-center " key={index}>
                   <h4
-                    className="col-sm-10"
+                    className="col-sm-10 border border-dark rounded p-1"
                     style={{ color: arrY[index] }}
                     onClick={() => changeColorY(index)}
                     role="button"

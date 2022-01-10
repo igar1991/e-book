@@ -70,7 +70,7 @@ export const Solution = () => {
           <h4>{allQuests?.title}</h4>
         </div>
         <hr />
-        <button onClick={()=>dispatch(trueAnswer())}>NEXT</button>
+        {/* <button onClick={()=>dispatch(trueAnswer())}>NEXT</button> */}
         <div className="d-flex flex-wrap flex-row justify-content-center m-3">
           {allQuests.quests.map((item, index) => {
             return (
@@ -113,7 +113,7 @@ export const Solution = () => {
           })}
         </div>
         <hr />
-        <div style={{ minHeight: '95vh' }}>{allQuests.quests[currentQuest]}</div>
+        <div style={{ minHeight: '60vh' }}>{allQuests.quests[currentQuest]}</div>
         <Modal
           size="md"
           show={modalTrue}

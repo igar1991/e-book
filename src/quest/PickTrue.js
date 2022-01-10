@@ -31,7 +31,7 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
 
 
     return (
-        <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
+        <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
             <div className="quiz-title">
                 <h4>{quiz}</h4>
                 {quiz2&&<h4>{quiz2}</h4>}
@@ -45,7 +45,7 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
                                     <button className={`fs-5 text-center list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[0] ? "text-white bg-warning" : ""}`} onClick={() => handlerPick(arrans[0], index)}>{arrans[0]}</button>
                                     <button className={`fs-5 text-center list-group-item list-group-item-action d-flex align-items-center ${value[index] === arrans[1] ? "text-white bg-warning" : ""}`} onClick={() => handlerPick(arrans[1], index)}>{arrans[1]}</button>
                                 </div>
-                                <div className={`fs-5 list-group-item list-group-item-action text-center`} key={index}>{item}</div>
+                                <div className={`fs-5 list-group-item list-group-item-action`} key={index}>{item}</div>
                             </div>
                         )
                     })}

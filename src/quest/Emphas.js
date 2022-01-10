@@ -30,7 +30,7 @@ export const Emphas = ({ quiz, ans, trueans, ansImg, quiz2, imgsize }) => {
   };
 
   return (
-    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
         {quiz2&&<h4>{quiz2}</h4>}

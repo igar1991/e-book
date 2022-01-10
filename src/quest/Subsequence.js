@@ -27,7 +27,7 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans, col, imgsize }) =
 
 
   return (
-    <div className="d-flex flex-column justify-content-between" style={{minHeight: '95vh'}}>
+    <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>
@@ -40,9 +40,9 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans, col, imgsize }) =
                 <h4 role="button" key={index}><input
                   key={index}
                   type="text"
-                  className="fs-5 text-center text-uppercase m-1"
+                  className="fs-5 text-center text-uppercase m-1 mb-3"
                   style={{ width: "5vw", minWidth: "35px" }}
-                  maxlength="1"
+                  maxLength="1"
                   value={value[index]}
                   onChange={(v) => setValue(value.map((it, ind) => ind === index ? v.target.value : it))}
                 />{item}</h4>
