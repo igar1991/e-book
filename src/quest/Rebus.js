@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CheckButton } from "../components/checkButton";
@@ -7,6 +7,10 @@ export const Rebus = ({ quiz, img, trueans, quiz2,img2, des }) => {
   const dispatch = useDispatch();
 
   const [value, setValue]=useState(new Array(trueans.length).fill(''))
+
+useEffect(()=>{
+  return setValue(new Array(trueans.length).fill(''))
+},[trueans.length])
 
   const currentAns = () => {
    
@@ -24,7 +28,7 @@ export const Rebus = ({ quiz, img, trueans, quiz2,img2, des }) => {
         <h4>{quiz}</h4>
         {quiz2&&<h4>{quiz2}</h4>}
       </div>
-      {img2&&      <div className="d-flex flex-wrap justify-content-center text-center">
+      {img2&&      <div className="d-flex flex-wrap justify-content-center">
         <h4 className="col-sm-12 col-lg-7">{des}</h4>
         {img2&&<img src={img2} className="img-fluid col-sm-12 col-lg-5" alt="rebus" style={{maxHeight: 100, objectFit: "contain"}} />}
       </div>}
@@ -32,7 +36,7 @@ export const Rebus = ({ quiz, img, trueans, quiz2,img2, des }) => {
         <img src={img} className="img-fluid col-sm-11 col-lg-8" alt="rebus" style={{maxHeight: 300, objectFit: "contain"}} />
       </div>}
       <div className="d-flex justify-content-center">
-          {trueans&&trueans.split("").map((item, index)=>{
+          {trueans&&value&&trueans.split("").map((item, index)=>{
               return (
                 <input
                 key={index}

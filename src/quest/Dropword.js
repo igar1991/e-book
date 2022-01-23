@@ -80,8 +80,6 @@ export const Dropword = () => {
         const newState = [...state];
         newState[sInd] = result[sInd];
         newState[dInd] = result[dInd];
-        console.log(result[dInd]);
-
         setState(newState);
       }
     }
@@ -143,7 +141,7 @@ export const Dropword = () => {
               </div>
             )}
           </Droppable>
-          <h2>,время потерял - </h2>
+          <h2>, время потерял - </h2>
           <Droppable droppableId={`${1}`}>
             {(provided, snapshot) => (
               <div
@@ -174,7 +172,7 @@ export const Dropword = () => {
               </div>
             )}
           </Droppable>
-          <h2>,здоровье потерял - </h2>
+          <h2>, здоровье потерял - </h2>
           <Droppable droppableId={`${2}`}>
             {(provided, snapshot) => (
               <div

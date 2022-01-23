@@ -77,8 +77,8 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
         <h4>{quiz}</h4>
       </div>
       {state && (
-        <div className="d-flex">
-          <div className="d-flex flex-column col-lg-4 justify-content-around ">
+        <div className="d-flex justify-content-between">
+          <div className="d-flex flex-column col-lg-4 justify-content-around me-2">
             {ans?.map((item, index) => (
               <div
                 key={index}

@@ -37,7 +37,7 @@ export const PickTrue = ({ trueans, quiz, ans, arrans, quiz2 }) => {
                 {quiz2&&<h4>{quiz2}</h4>}
             </div>
             <div className="d-flex justify-content-center">
-                <div className="col-12 col-md-9">
+                <div style={{maxWidth: '80vw'}}>
                     {state && state.map((item, index) => {
                         return (
                             <div className="d-flex" key={index}>

@@ -78,8 +78,6 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  de
         const newState = [...state];
         newState[sInd] = result[sInd];
         newState[dInd] = result[dInd];
-        console.log(result[dInd]);
-
         setState(newState);
       }
     }
@@ -139,7 +137,7 @@ export const Imgdrop = ({ quiz, ans, col, trueans, arr, ansImg, arrImg, h,w,  de
                         <div className="d-flex justify-content-center align-items-center">
                           {arrImg && <img src={item.content} alt="1"  style={{height: h, objectFit: 'contain'}}/>}
                           {!arrImg && <h4
-                            className="card-text text-white text-center pt-2"
+                            className="card-text text-center pt-2"
                             style={{
                               fontSize: "calc(0.4rem + 1vw)",
                             }}

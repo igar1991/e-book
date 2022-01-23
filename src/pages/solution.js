@@ -19,7 +19,6 @@ export const Solution = () => {
   const [numberClass, setNumberClass] = useState('')
   const [isnumberClass, setIsNumberClass] = useState(false)
 
-  const book = useSelector(state => state.bookReducer)
   const stateR = useSelector(state => state.resultReducer)
   const themeTitle = useSelector(state => state.themeReducer?.title)
   const bg = useSelector(state => state.themeReducer?.bg)
@@ -42,7 +41,6 @@ export const Solution = () => {
     dispatch(addError())
     dispatch(falseAnswer())
     dispatch(addMiss(currentQuest))
-    console.log(stateR.miss)
   }
 
 
@@ -57,7 +55,6 @@ export const Solution = () => {
       dispatch(nextQuest());
       dispatch(addMiss(currentQuest))
       dispatch(falseAnswer())
-      console.log(stateR.miss)
     }
 
   }
@@ -70,7 +67,7 @@ export const Solution = () => {
           <h4>{allQuests?.title}</h4>
         </div>
         <hr />
-        {/* <button onClick={()=>dispatch(trueAnswer())}>NEXT</button> */}
+        <button onClick={()=>dispatch(trueAnswer())}>NEXT</button>
         <div className="d-flex flex-wrap flex-row justify-content-center m-3">
           {allQuests.quests.map((item, index) => {
             return (
@@ -126,7 +123,7 @@ export const Solution = () => {
             <Modal.Title>Молодец! Ответил верно!😀</Modal.Title>
           </Modal.Header>
           <Modal.Body className="d-flex justify-content-center">
-            {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Ты прошел: {allQuests.title}</h2> : <h2>Молодец! Так держать!</h2>}
+            {(allQuests.quests.length <= currentQuest + 1) ? <h2>Поздравляем!<br /> Ты прошёл: {allQuests.title}</h2> : <h2>Молодец! Так держать!</h2>}
           </Modal.Body>
           <Modal.Footer>
             {(allQuests.quests.length <= currentQuest + 1) ? <button
@@ -154,27 +151,25 @@ export const Solution = () => {
           aria-labelledby="contained-modal-title-vcenter"
         >
           <Modal.Header className="bg-danger text-light">
-            <Modal.Title>Неверно! 😔</Modal.Title>
+            <Modal.Title>{(allQuests.quests.length <= currentQuest + 1)?"Неверно! Но ты не расстраивайся!":"Неверно! 😔"}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h2>{stateR.miss[currentQuest] >= 2 ? "Не огорчайся! Давай перейдём к следующему заданию." : "Попробуй ещё раз! Не огорчайся!"}</h2>
+          {(allQuests.quests.length <= currentQuest + 1)&&(stateR.miss[currentQuest] >= 2) ? <h2>Поздравляем!<br /> Ты прошёл: {allQuests.title}</h2> :<h2>{stateR.miss[currentQuest] >= 2 ? "Не огорчайся! Давай перейдём к следующему заданию." : "Попробуй ещё раз! Не огорчайся!"}</h2>}
           </Modal.Body>
           <Modal.Footer>
-            {stateR.miss[currentQuest] < 2 && <button
+            {stateR.miss[currentQuest] < 2 ? <button
               type="button"
               className="btn btn-danger btn-block"
               onClick={addfalseAnswer}
             >
               Закрыть
-            </button>}
-            {stateR.miss[currentQuest] >= 2 && <button
+            </button>:<button
               type="button"
-              className="btn btn-warning btn-block"
+              className={`btn btn-${(allQuests.quests.length <= currentQuest + 1)?'success':'warning'} btn-block`}
               onClick={addMiss_}
             >
-              Пропустить
+              {(allQuests.quests.length <= currentQuest + 1)?'Посмотреть результаты':'Пропустить'}
             </button>}
-
           </Modal.Footer>
         </Modal>
         <Modal

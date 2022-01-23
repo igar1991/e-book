@@ -15,9 +15,6 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans, col, imgsize }) =
   }, [ans])
 
   const currentAns = () => {
-    console.log(trueans)
-    console.log(value)
-
     let i = trueans.length;
     while (i--) {
       if (trueans[i] !== value[i]) return dispatch(falseAnswer(1));
@@ -27,7 +24,7 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans, col, imgsize }) =
 
 
   return (
-    <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
+    <div className="d-flex flex-column justify-content-between" style={{ minHeight: '50vh' }}>
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>
@@ -51,12 +48,12 @@ export const Subsequence = ({ img, trueans, quiz, ans, arrans, col, imgsize }) =
           })}
         </div>
         {img && <div className={`col-${col[1]} col-md-${col[3]} d-flex justify-content-center p-1`}>
-          <img src={img} style={{ width: imgsize?imgsize: '100%', objectFit: 'contain' }} alt="Responsive" />
+          <img src={img} style={{ width: imgsize ? imgsize : '100%', objectFit: 'contain' }} alt="Responsive" />
         </div>}
 
       </div>
       <div>
-      <CheckButton currentAns={currentAns} />
+        <CheckButton currentAns={currentAns} />
       </div>
     </div>
   );

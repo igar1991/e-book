@@ -50,13 +50,13 @@ export const ColorPic = ({arr, trueans, ans, dec }) => {
         {dec&&<h4>{dec}</h4>}
       </div>
       <div className="d-flex flex-row justify-content-center">
-        <div className="d-flex flex-column justify-content-between col-9 col-sm-6 col-lg-10 col-md-10 me-2">
+        <div className="d-flex flex-column justify-content-between me-2">
           {arrY &&
             arr.map((item, index) => {
               return (
-                <div className="d-flex flex-row justify-content-center " key={index}>
+                <div key={index}>
                   <h4
-                    className="col-sm-10 border border-dark rounded p-1"
+                    className="border border-dark rounded p-1"
                     style={{ color: arrY[index] }}
                     onClick={() => changeColorY(index)}
                     role="button"

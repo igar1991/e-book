@@ -48,7 +48,7 @@ export const Result = () => {
       ctx.font = "45px serif";
       ctx.fillText(`№ ${getRandomInt(1000, 9999)}`, 100, 90);
       ctx.textAlign = 'center'
-      wrapText(ctx, titleClass ,800, 340, 800, 70 )
+      wrapText(ctx, titleClass ,800, 360, 800, 70 )
       ctx.font = "60px serif";
       ctx.fillText(nameSrudent, 800, 580);
       ctx.font = "45px serif";
@@ -104,7 +104,7 @@ export const Result = () => {
               <h3>{item.titleBook}</h3>
               <h4>{item.titleClass}</h4>
               <hr />
-              <h4>{item.nameStudent}</h4>
+              <h4 className="fw-bold">{item.nameStudent}</h4>
               <h5>{item.date}</h5>
               <hr />
               {truans.length > 0 && <h4 className="text-success">{`Выполнено с 1 попытки: ${truans.length} заданий (№ ${truans.map((item) => ` ${++item}`)})`}</h4>}

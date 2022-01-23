@@ -77,8 +77,6 @@ export const DropwordList = ({quiz, ans, trueans, h}) => {
         const newState = [...state];
         newState[sInd] = result[sInd];
         newState[dInd] = result[dInd];
-        console.log(result[dInd]);
-
         setState(newState);
       }
     }
@@ -110,6 +108,7 @@ export const DropwordList = ({quiz, ans, trueans, h}) => {
                           <Droppable droppableId={`${ind}`}>
                             {(provided, snapshot) => (
                               <div
+                              className="mb-3"
                                 ref={provided.innerRef}
                                 style={getListStyle(snapshot.isDraggingOver)}
                                 {...provided.droppableProps}
@@ -126,7 +125,7 @@ export const DropwordList = ({quiz, ans, trueans, h}) => {
                                           provided.draggableProps.style
                                         )}
                                       >
-                                        <div className="text-center text-white" >
+                                        <div className="text-center text-white mb-1" >
                                           <h4>{item.content}</h4>
                                         </div>
                                       </div>
@@ -145,6 +144,7 @@ export const DropwordList = ({quiz, ans, trueans, h}) => {
                           <Droppable droppableId={`${ind+state.length/2}`}>
                             {(provided, snapshot) => (
                               <div
+                              className="mb-3"
                                 ref={provided.innerRef}
                                 style={getListStyle(snapshot.isDraggingOver)}
                                 {...provided.droppableProps}
@@ -161,7 +161,7 @@ export const DropwordList = ({quiz, ans, trueans, h}) => {
                                           provided.draggableProps.style
                                         )}
                                       >
-                                        <div className="text-center text-white" >
+                                        <div className="text-center text-white mb-1" >
                                           <h4>{item.content}</h4>
                                         </div>
                                       </div>

@@ -16,7 +16,6 @@ export const Menu = () => {
     dispatch(clearQuest())
     his.push("/solution")
     dispatch(addQuest(item))
-    console.log(item)
     dispatch(openModalName())
   }
 
