@@ -93,7 +93,7 @@ export const Arrow = ({ quiz, description, ans, trueans }) => {
             ))}
           </div>
 
-          <div className="col-lg-8">
+          <div className="col-lg-8 pe-3 ps-3">
             <DragDropContext onDragEnd={(res) => onDragEnd(res)}>
               <Droppable droppableId="droppable">
                 {(provided, snapshot) => (
