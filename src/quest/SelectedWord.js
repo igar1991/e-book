@@ -35,7 +35,7 @@ export const SelectedWord = ({quiz, trueAns, arrText, arrWord, img, imgsize, col
       <div className="quiz-title">
         <h4>{quiz}</h4>
       </div>
-      <div className="d-flex flex-wrap justify-content-center" style={{minHeight: '50vh'}}>
+      <div className="d-flex flex-wrap justify-content-center" style={{minHeight: '30vh'}}>
       <div className={`${col?'d-flex flex-column':''} justify-content-center ${img&&`col-lg-7`} col-sm-11 col-11`}>
         {arrText.map((item, index)=><h4 key={index} className="d-inline">{item}{index<arrWord.length&&<Sele arr={arrWord[index]} addValue={addValue} n={index} />}</h4>)}
         </div>

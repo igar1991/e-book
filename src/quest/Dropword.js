@@ -104,8 +104,8 @@ export const Dropword = () => {
       <div className="d-flex flex-column justify-content-between" style={{minHeight: '50vh'}}>
       <div className="quiz-title">
         <h4>
-          Заполни пропуски в данной пословице. (зажимай ответы левой клавишей
-          мыши и перетаскивай в нужное место)
+          Заполни пропуски в данной пословице (зажимай ответы левой клавишей
+          мыши и перетаскивай в нужное место).
         </h4>
       </div>
       <div className="d-flex flex-wrap text-danger justify-content-center">

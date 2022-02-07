@@ -85,6 +85,7 @@ export const DropwordList = ({quiz, ans, trueans, h}) => {
   const currentAns = () => {
     let i = trueans.length;
     let arrstate = state.slice(0,5)
+
     while (i--) {
       if(arrstate[i][0]) {
         if (trueans[i] !== arrstate[i][0].id) return dispatch(falseAnswer(1))

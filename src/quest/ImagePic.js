@@ -5,7 +5,7 @@ import { falseAnswer, trueAnswer } from "../redux/action";
 import { useDispatch } from "react-redux";
 import { CheckButton } from "../components/checkButton";
 
-export const ImagePic = ({ imgArr, quiz, trueans, des }) => {
+export const ImagePic = ({ imgArr, quiz, trueans, des, img, imgsize }) => {
 
   const [value, setValue] = useState(null);
   const [arrnew, setArr] = useState(null);
@@ -38,6 +38,9 @@ export const ImagePic = ({ imgArr, quiz, trueans, des }) => {
       <div className="quiz-title">
         <h4>{quiz}</h4>
         {des && <h4>{des}</h4>}
+        {img && <div className={`col-lg-5 col-sm-11 col-11 d-flex justify-content-center align-content-center`}>
+          <img src={img} alt="Responsive" style={{ width: imgsize?imgsize: '90%', maxWidth: "90vw", objectFit: 'contain'}} />
+        </div>}
       </div>
       {arrnew && <ImagePicker
         images={arrnew.map((image, i) => ({ src: image, value: i }))}
